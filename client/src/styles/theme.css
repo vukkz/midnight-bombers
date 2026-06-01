@@ -1,0 +1,1368 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@500;600;700&display=swap");
+
+/* ============================================================
+   Midnight Bombers — Graffiti theme layer
+   Tokens, display font, textures and animation utilities.
+   Loaded after style.css + extras.css so it can layer on top.
+   ============================================================ */
+
+:root {
+	--ink: #0c0c0e;
+	--charcoal: #17171a;
+	--charcoal-2: #232327;
+	--concrete: #f3f1ec;
+	--concrete-2: #e9e6df;
+	--paper: #ffffff;
+	--pink: #ff5fcf;
+	--pink-deep: #d6249f;
+	--yellow: #f7eaa3;
+	--ink-line: rgba(255, 255, 255, 0.08);
+
+	--display-font: "Bebas Neue", "Oswald", "Spartan", sans-serif;
+	--accent-font: "Oswald", "Spartan", sans-serif;
+
+	--glow-pink: 0 0 22px rgba(255, 95, 207, 0.55);
+	--shadow-card: 0 18px 40px rgba(12, 12, 14, 0.12);
+	--shadow-card-hover: 0 26px 60px rgba(214, 36, 159, 0.22);
+}
+
+/* —— Base surface: kill the stark pure-white feel —— */
+body {
+	background-color: var(--concrete);
+}
+
+/* —— Display headings (condensed/heavy), body stays Spartan —— */
+h1,
+h2 {
+	font-family: var(--display-font);
+	letter-spacing: 0.015em;
+	font-weight: 400;
+}
+
+#hero h1,
+#hero h2,
+#hero h4 {
+	font-family: var(--display-font);
+}
+
+.section-p1 > h2,
+#product-1 > h2,
+#page-header h2,
+#banner h2 {
+	font-family: var(--display-font);
+	letter-spacing: 0.02em;
+}
+
+/* —— Reusable graffiti textures —— */
+.graffiti-noise {
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+}
+
+.section-dark {
+	position: relative;
+	background-color: var(--ink);
+	background-image:
+		radial-gradient(
+			circle at 18% 12%,
+			rgba(255, 95, 207, 0.16),
+			transparent 42%
+		),
+		radial-gradient(circle at 85% 4%, rgba(247, 234, 163, 0.1), transparent 40%),
+		url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+	color: #fff;
+}
+
+/* Subtle tinted concrete panel to replace flat-white product sections */
+.section-concrete {
+	background-color: var(--concrete);
+	background-image:
+		radial-gradient(
+			circle at 0% 0%,
+			rgba(255, 95, 207, 0.05),
+			transparent 35%
+		),
+		radial-gradient(
+			circle at 100% 100%,
+			rgba(247, 234, 163, 0.18),
+			transparent 38%
+		);
+}
+
+/* Neon glow helper for accent text */
+.neon-pink {
+	color: var(--pink);
+	text-shadow: var(--glow-pink);
+}
+
+/* —— Route transitions (top progress bar + content fade-in) —— */
+.page-loader {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 3px;
+	background: linear-gradient(90deg, var(--pink), #ff9f1a);
+	box-shadow: 0 0 12px rgba(255, 95, 207, 0.7);
+	transform-origin: left;
+	animation: mb-loadbar 0.55s ease-out forwards;
+	z-index: 10000;
+}
+
+@keyframes mb-loadbar {
+	0% {
+		transform: scaleX(0);
+		opacity: 1;
+	}
+	70% {
+		transform: scaleX(0.9);
+		opacity: 1;
+	}
+	100% {
+		transform: scaleX(1);
+		opacity: 0;
+	}
+}
+
+.page-transition {
+	animation: mb-page-in 0.4s ease both;
+}
+
+@keyframes mb-page-in {
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+/* —— Animation utilities —— */
+@keyframes mb-fade-up {
+	from {
+		opacity: 0;
+		transform: translateY(28px);
+	}
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+@keyframes mb-hero-in {
+	from {
+		opacity: 0;
+		transform: translateY(22px);
+		filter: blur(4px);
+	}
+	to {
+		opacity: 1;
+		transform: none;
+		filter: blur(0);
+	}
+}
+
+/* Scroll-reveal: elements start hidden, .is-visible added by useReveal */
+.reveal {
+	opacity: 0;
+	transform: translateY(28px);
+	transition:
+		opacity 0.6s ease,
+		transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+	will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+	opacity: 1;
+	transform: none;
+}
+
+.reveal-d1 {
+	transition-delay: 0.08s;
+}
+.reveal-d2 {
+	transition-delay: 0.16s;
+}
+.reveal-d3 {
+	transition-delay: 0.24s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.reveal {
+		opacity: 1 !important;
+		transform: none !important;
+		transition: none !important;
+	}
+
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.001ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.001ms !important;
+		scroll-behavior: auto !important;
+	}
+}
+
+/* ============================================================
+   Shop search & filter (now global, not trapped in a media query)
+   ============================================================ */
+.shop-filters {
+	max-width: 1400px;
+	margin: 0 auto;
+}
+
+.shop-toolbar {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	gap: 16px 24px;
+	margin-bottom: 22px;
+}
+
+.shop-search-form {
+	display: flex;
+	gap: 10px;
+	flex: 1;
+	min-width: 280px;
+	max-width: 640px;
+}
+
+.shop-search-field {
+	position: relative;
+	flex: 1;
+	display: flex;
+	align-items: center;
+}
+
+.shop-search-icon {
+	position: absolute;
+	left: 18px;
+	color: #9a9a9a;
+	font-size: 15px;
+	pointer-events: none;
+	transition: color 0.2s ease;
+}
+
+.shop-search-field:focus-within .shop-search-icon {
+	color: var(--pink);
+}
+
+.shop-search-input {
+	width: 100%;
+	padding: 15px 18px 15px 46px;
+	border: 1.5px solid #e3ded3;
+	border-radius: 999px;
+	background: #fff;
+	font-size: 15px;
+	font-family: inherit;
+	color: #222;
+	transition:
+		border-color 0.2s,
+		box-shadow 0.2s;
+}
+
+.shop-search-input::placeholder {
+	color: #aaa;
+}
+
+.shop-search-input:focus {
+	outline: none;
+	border-color: var(--pink);
+	box-shadow: 0 0 0 4px rgba(255, 95, 207, 0.14);
+}
+
+.shop-search-btn.normal {
+	border-radius: 999px;
+	background: var(--ink);
+	color: #fff;
+	padding: 15px 30px;
+	font-weight: 700;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+}
+
+.shop-search-btn.normal:hover {
+	background: var(--pink);
+	color: #fff;
+	box-shadow: var(--glow-pink);
+}
+
+.shop-results-meta {
+	font-size: 13px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	color: #6a6a6a;
+	white-space: nowrap;
+}
+
+.shop-category-row {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	align-items: center;
+}
+
+.shop-filter-button {
+	border: 1.5px solid #d8d2c6;
+	background: #fff;
+	color: #222;
+	padding: 10px 20px;
+	border-radius: 999px;
+	cursor: pointer;
+	font-family: inherit;
+	font-size: 14px;
+	font-weight: 600;
+	transition:
+		transform 0.15s ease,
+		background 0.2s,
+		color 0.2s,
+		border-color 0.2s,
+		box-shadow 0.2s;
+}
+
+.shop-filter-button:hover {
+	border-color: var(--pink);
+	color: var(--pink);
+	transform: translateY(-2px);
+}
+
+.shop-filter-button.active {
+	background: var(--pink);
+	border-color: var(--pink);
+	color: #fff;
+	box-shadow: var(--glow-pink);
+}
+
+.shop-clear-button.normal {
+	margin-left: auto;
+	border-radius: 999px;
+	background: transparent;
+	border: 1.5px solid #d8d2c6;
+	color: #6a6a6a;
+	padding: 10px 20px;
+	font-weight: 600;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+}
+
+.shop-clear-button.normal:hover {
+	border-color: var(--ink);
+	color: var(--ink);
+	background: transparent;
+}
+
+/* Pagination pills to match */
+#pagination a {
+	background: #fff;
+	border: 1.5px solid #e3ded3;
+	color: var(--ink);
+	border-radius: 999px;
+	font-weight: 700;
+	transition:
+		background 0.2s,
+		color 0.2s,
+		border-color 0.2s,
+		box-shadow 0.2s;
+}
+
+#pagination a:hover,
+#pagination a.active {
+	background: var(--pink);
+	border-color: var(--pink);
+	color: #fff;
+	box-shadow: var(--glow-pink);
+}
+
+@media (max-width: 576px) {
+	.shop-search-form {
+		flex-wrap: wrap;
+		max-width: none;
+	}
+
+	.shop-search-btn.normal {
+		width: 100%;
+	}
+
+	.shop-results-meta {
+		width: 100%;
+	}
+
+	.shop-clear-button.normal {
+		margin-left: 0;
+		width: 100%;
+	}
+}
+
+/* ============================================================
+   Shop sidebar layout + brand filters + compact product grid
+   ============================================================ */
+.shop-layout {
+	display: grid;
+	grid-template-columns: 248px 1fr;
+	gap: 32px;
+	max-width: 1400px;
+	margin: 0 auto;
+	align-items: start;
+}
+
+.shop-sidebar {
+	position: sticky;
+	top: 100px;
+	display: flex;
+	flex-direction: column;
+	gap: 22px;
+	padding: 22px;
+	background: #fff;
+	border: 1.5px solid #ece6da;
+	border-radius: 16px;
+	box-shadow: var(--shadow-card);
+}
+
+.shop-filter-title {
+	font-size: 12px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.12em;
+	color: #9a9a9a;
+	margin-bottom: 12px;
+}
+
+.shop-cat-list,
+.shop-brand-list {
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.shop-cat-btn {
+	width: 100%;
+	text-align: left;
+	background: transparent;
+	border: none;
+	padding: 10px 14px;
+	border-radius: 10px;
+	font-family: inherit;
+	font-size: 15px;
+	font-weight: 600;
+	color: #333;
+	cursor: pointer;
+	transition:
+		background 0.15s ease,
+		color 0.15s ease;
+}
+
+.shop-cat-btn:hover {
+	background: var(--concrete);
+	color: var(--pink-deep);
+}
+
+.shop-cat-btn.active {
+	background: var(--ink);
+	color: #fff;
+}
+
+.shop-brand-option {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 8px 14px;
+	border-radius: 10px;
+	cursor: pointer;
+	font-size: 14px;
+	font-weight: 500;
+	color: #333;
+	transition: background 0.15s ease;
+}
+
+.shop-brand-option:hover {
+	background: var(--concrete);
+}
+
+.shop-brand-option input {
+	width: 17px;
+	height: 17px;
+	accent-color: var(--pink);
+	cursor: pointer;
+	flex-shrink: 0;
+}
+
+.shop-sidebar .shop-clear-button.normal {
+	margin-left: 0;
+	width: 100%;
+}
+
+.shop-results {
+	min-width: 0;
+}
+
+.shop-results-bar {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	gap: 16px 24px;
+	margin-bottom: 24px;
+}
+
+.shop-product-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+	gap: 18px;
+}
+
+#product-1.shop-product-grid {
+	text-align: left;
+}
+
+#product-1.shop-product-grid .pro {
+	width: auto;
+	min-width: 0;
+	margin: 0;
+}
+
+.shop-empty {
+	color: #555;
+	padding: 20px 0;
+}
+
+@media (max-width: 991px) {
+	.shop-layout {
+		grid-template-columns: 1fr;
+		gap: 24px;
+	}
+
+	.shop-sidebar {
+		position: static;
+	}
+
+	.shop-cat-list,
+	.shop-brand-list {
+		flex-direction: row;
+		flex-wrap: wrap;
+	}
+
+	.shop-cat-btn {
+		width: auto;
+	}
+}
+
+/* ============================================================
+   Home — hero, banner, sections
+   ============================================================ */
+#hero {
+	position: relative;
+	overflow: hidden;
+}
+
+#hero::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background:
+		linear-gradient(
+			100deg,
+			rgba(7, 7, 9, 0.82) 0%,
+			rgba(7, 7, 9, 0.45) 48%,
+			rgba(7, 7, 9, 0.1) 100%
+		),
+		radial-gradient(
+			circle at 12% 78%,
+			rgba(255, 95, 207, 0.28),
+			transparent 45%
+		);
+	z-index: 0;
+}
+
+.hero-content {
+	position: relative;
+	z-index: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	max-width: 680px;
+}
+
+#hero h4 {
+	text-transform: uppercase;
+	letter-spacing: 0.35em;
+	font-weight: 700;
+	animation: mb-hero-in 0.7s ease both;
+}
+
+#hero h2 {
+	font-size: 60px;
+	line-height: 1;
+	animation: mb-hero-in 0.7s 0.12s ease both;
+}
+
+#hero h1 {
+	font-size: 92px;
+	line-height: 0.95;
+	margin: 6px 0 10px;
+	text-shadow: 0 0 28px rgba(255, 95, 207, 0.55);
+	animation: mb-hero-in 0.7s 0.24s ease both;
+}
+
+#hero p {
+	font-size: 16px;
+	max-width: 460px;
+	line-height: 1.6;
+	animation: mb-hero-in 0.7s 0.36s ease both;
+}
+
+.hero-content a {
+	display: inline-block;
+	margin-top: 22px;
+	animation: mb-hero-in 0.7s 0.48s ease both;
+}
+
+#hero button {
+	border: 2px solid var(--pink);
+	border-radius: 999px;
+	padding: 15px 48px;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	transition:
+		background 0.25s ease,
+		color 0.25s ease,
+		box-shadow 0.25s ease,
+		transform 0.15s ease;
+}
+
+#hero button:hover {
+	background-color: var(--pink);
+	color: #0c0c0e;
+	box-shadow: var(--glow-pink);
+	transform: translateY(-2px);
+}
+
+/* Banner: keep the photo, add a readable overlay + framed content */
+#banner {
+	position: relative;
+	overflow: hidden;
+}
+
+#banner::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(
+		180deg,
+		rgba(7, 7, 9, 0.55),
+		rgba(7, 7, 9, 0.78)
+	);
+	z-index: 0;
+}
+
+.banner-content {
+	position: relative;
+	z-index: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#banner h2 {
+	font-size: 44px;
+}
+
+#banner .normal {
+	margin-top: 6px;
+	border-radius: 999px;
+	padding: 14px 40px;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	transition:
+		background 0.25s ease,
+		color 0.25s ease,
+		box-shadow 0.25s ease,
+		transform 0.15s ease;
+}
+
+#banner .normal:hover {
+	box-shadow: var(--glow-pink);
+	transform: translateY(-2px);
+}
+
+/* "View all" call-to-action under a product section */
+.section-cta {
+	text-align: center;
+	margin-top: 32px;
+}
+
+.view-all-btn {
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+	padding: 14px 38px;
+	background: var(--ink);
+	color: #fff;
+	border-radius: 999px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	text-decoration: none;
+	transition:
+		background 0.25s ease,
+		color 0.25s ease,
+		box-shadow 0.25s ease,
+		transform 0.15s ease;
+}
+
+.view-all-btn:hover {
+	background: var(--pink);
+	color: #0c0c0e;
+	box-shadow: var(--glow-pink);
+	transform: translateY(-2px);
+}
+
+.view-all-btn i {
+	font-size: 13px;
+	transition: transform 0.2s ease;
+}
+
+.view-all-btn:hover i {
+	transform: translateX(3px);
+}
+
+/* Section headings get a small graffiti underline */
+#product-1 > h2 {
+	position: relative;
+	display: inline-block;
+	padding-bottom: 12px;
+}
+
+#product-1 > h2::after {
+	content: "";
+	position: absolute;
+	left: 50%;
+	bottom: 0;
+	transform: translateX(-50%) rotate(-0.4deg);
+	width: 72px;
+	height: 5px;
+	border-radius: 4px;
+	background: linear-gradient(90deg, var(--pink), var(--yellow));
+}
+
+@media (max-width: 799px) {
+	#hero h1 {
+		font-size: 64px;
+	}
+
+	#hero h2 {
+		font-size: 44px;
+	}
+}
+
+/* ============================================================
+   Product cards
+   ============================================================ */
+#product-1 .pro {
+	background: #fff;
+	border: 1.5px solid #ece6da;
+	border-radius: 18px;
+	overflow: hidden;
+	padding: 0;
+	box-shadow: var(--shadow-card);
+	transition:
+		transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1),
+		box-shadow 0.25s ease,
+		border-color 0.25s ease;
+}
+
+#product-1 .pro:hover {
+	transform: translateY(-8px);
+	border-color: var(--pink);
+	box-shadow: var(--shadow-card-hover);
+}
+
+.pro-img {
+	position: relative;
+	overflow: hidden;
+	aspect-ratio: 1 / 1;
+	background: var(--concrete-2);
+}
+
+.pro-img img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 0 !important;
+	display: block;
+	transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+#product-1 .pro:hover .pro-img img {
+	transform: scale(1.08);
+}
+
+.pro-tag {
+	position: absolute;
+	top: 12px;
+	left: 12px;
+	background: rgba(12, 12, 14, 0.82);
+	color: #fff;
+	font-size: 11px;
+	font-weight: 700;
+	letter-spacing: 0.06em;
+	text-transform: capitalize;
+	padding: 6px 12px;
+	border-radius: 999px;
+	backdrop-filter: blur(4px);
+}
+
+#product-1 .pro .des {
+	padding: 14px 16px 58px;
+}
+
+#product-1 .pro .des > span {
+	display: none;
+}
+
+#product-1 .pro .des h5 {
+	font-size: 15px;
+	transition: color 0.2s ease;
+}
+
+#product-1 .pro .des .pro-meta {
+	margin-top: 6px;
+	font-size: 11px;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: #8a8a8a;
+}
+
+.product-detail .product-brand {
+	margin-top: 8px;
+	font-size: 13px;
+	font-weight: 700;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: var(--pink-deep);
+}
+
+#product-1 .pro:hover .des h5 {
+	color: var(--pink);
+}
+
+#product-1 .pro .des h4 {
+	color: var(--pink-deep);
+	font-size: 16px;
+}
+
+#product-1 .pro .cart {
+	background: var(--ink);
+	color: #fff;
+	border: none;
+	bottom: 16px;
+	right: 16px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+	transition:
+		background 0.2s ease,
+		color 0.2s ease,
+		transform 0.15s ease,
+		box-shadow 0.2s ease;
+}
+
+#product-1 .pro .cart:hover {
+	background: var(--pink);
+	color: #0c0c0e;
+	transform: scale(1.1);
+	box-shadow: var(--glow-pink);
+}
+
+/* ============================================================
+   Global polish — page headers, spinner, buttons
+   ============================================================ */
+
+/* Spinner sits on light concrete sections, so darken its label */
+.loading-spinner p {
+	color: var(--ink);
+}
+
+/* Page headers (Shop / Blog / About): readable overlay + accent */
+#page-header {
+	position: relative;
+	overflow: hidden;
+}
+
+#page-header::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background:
+		linear-gradient(rgba(7, 7, 9, 0.45), rgba(7, 7, 9, 0.7)),
+		radial-gradient(
+			circle at 80% 20%,
+			rgba(255, 95, 207, 0.22),
+			transparent 45%
+		);
+	z-index: 0;
+}
+
+#page-header > * {
+	position: relative;
+	z-index: 1;
+}
+
+#page-header h2 {
+	font-size: 56px;
+	letter-spacing: 0.02em;
+}
+
+/* Generic yellow buttons get a subtle lift on hover */
+button.normal {
+	border-radius: 6px;
+}
+
+button.normal:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* Newsletter accent text uses the brand pink glow */
+#newletter h4 {
+	font-family: var(--display-font);
+	letter-spacing: 0.02em;
+	font-size: 30px;
+}
+
+/* ============================================================
+   Homepage culture sections — brands, gallery, community, reviews
+   ============================================================ */
+
+/* Shared section heading block */
+.section-head {
+	text-align: center;
+	max-width: 720px;
+	margin: 0 auto 34px;
+}
+
+.section-head h2 {
+	position: relative;
+	display: inline-block;
+	padding-bottom: 14px;
+	margin-bottom: 10px;
+}
+
+.section-head h2::after {
+	content: "";
+	position: absolute;
+	left: 50%;
+	bottom: 0;
+	transform: translateX(-50%) rotate(-0.4deg);
+	width: 72px;
+	height: 5px;
+	border-radius: 4px;
+	background: linear-gradient(90deg, var(--pink), var(--yellow));
+}
+
+.section-head p {
+	color: #6a6a6a;
+	font-size: 15px;
+	line-height: 1.6;
+}
+
+/* Headings/text stay readable on dark sections */
+.section-dark h2,
+.section-dark h4 {
+	color: #fff;
+}
+
+.section-dark .section-head p {
+	color: rgba(255, 255, 255, 0.7);
+}
+
+/* —— Featured Brands carousel —— */
+.brand-carousel {
+	overflow: hidden;
+	max-width: 1100px;
+	margin: 0 auto;
+	-webkit-mask-image: linear-gradient(
+		90deg,
+		transparent,
+		#000 8%,
+		#000 92%,
+		transparent
+	);
+	mask-image: linear-gradient(
+		90deg,
+		transparent,
+		#000 8%,
+		#000 92%,
+		transparent
+	);
+}
+
+.brand-track {
+	display: flex;
+	will-change: transform;
+}
+
+.brand-slide {
+	flex-grow: 0;
+	flex-shrink: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100px;
+	padding: 0 18px;
+	overflow: hidden;
+}
+
+.brand-slide img {
+	/* Fixed height = every logo reads the same size, regardless of its
+	   source resolution or aspect ratio. Width is free so wide wordmarks
+	   are not squeezed shorter than the rest. */
+	height: 52px;
+	width: auto;
+	max-width: 100%;
+	object-fit: contain;
+	/* Render any transparent-background logo as solid white */
+	filter: brightness(0) invert(1);
+	opacity: 0.85;
+	transform: scale(var(--logo-scale, 1));
+	transform-origin: center;
+	transition:
+		opacity 0.2s ease,
+		transform 0.2s ease;
+}
+
+.brand-slide img:hover {
+	opacity: 1;
+	transform: scale(calc(var(--logo-scale, 1) * 1.06));
+}
+
+.brand-fallback {
+	font-family: var(--display-font);
+	font-size: 30px;
+	letter-spacing: 0.04em;
+	color: #fff;
+}
+
+/* —— Street Gallery —— */
+.gallery-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 14px;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.gallery-item {
+	position: relative;
+	margin: 0;
+	overflow: hidden;
+	border-radius: 14px;
+	aspect-ratio: 4 / 3;
+	border: 1.5px solid rgba(255, 255, 255, 0.1);
+}
+
+.gallery-item img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+	transition:
+		transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1),
+		filter 0.3s ease;
+}
+
+.gallery-item:hover img {
+	transform: scale(1.08);
+	filter: saturate(1.15);
+}
+
+.gallery-caption {
+	position: absolute;
+	left: 12px;
+	bottom: 12px;
+	padding: 6px 12px;
+	border-radius: 999px;
+	background: rgba(12, 12, 14, 0.7);
+	color: #fff;
+	font-size: 12px;
+	font-weight: 700;
+	letter-spacing: 0.03em;
+	backdrop-filter: blur(4px);
+	opacity: 0;
+	transform: translateY(8px);
+	transition:
+		opacity 0.25s ease,
+		transform 0.25s ease;
+}
+
+.gallery-item:hover .gallery-caption {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.gallery-submit {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	width: max-content;
+	margin: 30px auto 0;
+	padding: 14px 34px;
+	border: 2px solid var(--pink);
+	border-radius: 999px;
+	color: var(--pink);
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	text-decoration: none;
+	transition:
+		background 0.25s ease,
+		color 0.25s ease,
+		box-shadow 0.25s ease,
+		transform 0.15s ease;
+}
+
+.gallery-submit:hover {
+	background: var(--pink);
+	color: #0c0c0e;
+	box-shadow: var(--glow-pink);
+	transform: translateY(-2px);
+}
+
+/* —— Community credibility strip —— */
+.community-strip {
+	background:
+		radial-gradient(
+			circle at 12% 50%,
+			rgba(255, 95, 207, 0.25),
+			transparent 45%
+		),
+		linear-gradient(90deg, var(--ink), var(--charcoal-2));
+	color: #fff;
+	padding: 48px 80px;
+	text-align: center;
+	border-top: 1px solid var(--ink-line);
+	border-bottom: 1px solid var(--ink-line);
+}
+
+.community-inner {
+	max-width: 820px;
+	margin: 0 auto;
+}
+
+.community-strip h2 {
+	color: #fff;
+	font-size: 40px;
+	margin-bottom: 10px;
+}
+
+.community-strip p {
+	color: rgba(255, 255, 255, 0.78);
+	font-size: 15px;
+	line-height: 1.65;
+}
+
+/* —— Reviews —— */
+.reviews-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 22px;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.review-card {
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+	padding: 28px 26px;
+	background: #fff;
+	border: 1.5px solid #ece6da;
+	border-radius: 16px;
+	box-shadow: var(--shadow-card);
+	transition:
+		transform 0.2s ease,
+		box-shadow 0.2s ease,
+		border-color 0.2s ease;
+}
+
+.review-card:hover {
+	transform: translateY(-6px);
+	border-color: var(--pink);
+	box-shadow: var(--shadow-card-hover);
+}
+
+.review-card .star i {
+	color: #f5b50a;
+	font-size: 14px;
+}
+
+.review-card blockquote {
+	margin: 0;
+	font-size: 15px;
+	line-height: 1.7;
+	color: #333;
+	font-style: italic;
+}
+
+.review-card figcaption {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin-top: auto;
+	font-size: 14px;
+	font-weight: 700;
+	color: var(--ink);
+}
+
+.review-card figcaption i {
+	color: #4285f4;
+}
+
+@media (max-width: 991px) {
+	.gallery-grid,
+	.reviews-grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (max-width: 576px) {
+	.gallery-grid,
+	.reviews-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.community-strip {
+		padding: 40px 24px;
+	}
+
+	.community-strip h2 {
+		font-size: 32px;
+	}
+}
+
+/* ============================================================
+   Responsive polish (phones & small tablets)
+   ============================================================ */
+
+/* Product detail: stack image above details on tablets/phones */
+@media (max-width: 820px) {
+	#prodetails {
+		flex-direction: column;
+	}
+
+	#prodetails .single-pro-image {
+		width: 100%;
+		margin-right: 0;
+		margin-bottom: 24px;
+	}
+
+	#prodetails .single-pro-details {
+		width: 100%;
+		padding-top: 0;
+	}
+}
+
+/* Tighter header on small tablets and phones */
+@media (max-width: 991px) {
+	#header {
+		padding: 16px 40px;
+	}
+}
+
+/* Mobile nav: white hamburger + dark/pink slide-out panel (current palette) */
+@media (max-width: 799px) {
+	#mobile i {
+		color: #fff;
+	}
+
+	#navbar {
+		background-color: var(--ink);
+		background-image: radial-gradient(
+			circle at 100% 0%,
+			rgba(255, 95, 207, 0.18),
+			transparent 55%
+		);
+		box-shadow: -12px 0 50px rgba(0, 0, 0, 0.55);
+	}
+
+	#navbar li a,
+	#navbar .nav-logout {
+		color: #fff;
+	}
+
+	#navbar li a:hover,
+	#navbar li a.active,
+	#navbar .nav-logout:hover {
+		color: var(--pink);
+	}
+
+	#close {
+		color: #fff;
+	}
+
+	#close:hover {
+		color: var(--pink);
+	}
+}
+
+@media (max-width: 560px) {
+	#header {
+		padding: 12px 24px;
+	}
+
+	#header .logo {
+		height: 56px;
+		width: auto;
+	}
+}
+
+/* Footer columns reflow into even rows, then stack on phones */
+@media (max-width: 768px) {
+	footer {
+		gap: 28px 24px;
+	}
+
+	footer .col {
+		flex: 1 1 42%;
+	}
+
+	footer .copyright {
+		flex-basis: 100%;
+	}
+}
+
+@media (max-width: 480px) {
+	footer .col {
+		flex: 1 1 100%;
+	}
+
+	/* Keep the hero headline from overflowing tiny screens */
+	#hero h1 {
+		font-size: 52px;
+	}
+
+	#hero h2 {
+		font-size: 30px;
+	}
+
+	#hero h4 {
+		font-size: 14px;
+		letter-spacing: 0.22em;
+	}
+
+	#hero p {
+		font-size: 14px;
+	}
+
+	.brand-slide {
+		padding: 0 12px;
+	}
+}

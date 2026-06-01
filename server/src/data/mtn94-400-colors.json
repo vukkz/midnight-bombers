@@ -1,0 +1,1298 @@
+[
+	{
+		"code": "RV 124",
+		"name": "Verde Frisco / Frisco Green",
+		"hex": "#C9DF9E",
+		"type": "matte"
+	},
+	{
+		"code": "RV 16",
+		"name": "Verde Pistacho / Pistachio Green",
+		"hex": "#A2D06B",
+		"type": "matte"
+	},
+	{
+		"code": "RV 34",
+		"name": "V. Guacamole / Guacamole Green",
+		"hex": "#84BC3F",
+		"type": "matte"
+	},
+	{
+		"code": "RV 125",
+		"name": "Verde Neón / Neon Green",
+		"hex": "#50B848",
+		"type": "matte"
+	},
+	{
+		"code": "RV 6018",
+		"name": "Verde Valle / Valley Green",
+		"hex": "#387C44",
+		"type": "matte"
+	},
+	{
+		"code": "RV 126",
+		"name": "Verde Toscana / Toscana Green",
+		"hex": "#134F36",
+		"type": "matte"
+	},
+	{
+		"code": "RV 127",
+		"name": "Verde Era / Era Green",
+		"hex": "#0F3224",
+		"type": "matte"
+	},
+	{
+		"code": "RV 6009",
+		"name": "Verde Amazonas / Amazonas Green",
+		"hex": "#0D2218",
+		"type": "matte"
+	},
+	{
+		"code": "RV 188",
+		"name": "Verde Destello / Shining Green",
+		"hex": "#E3E7C4",
+		"type": "matte"
+	},
+	{
+		"code": "RV 1016",
+		"name": "Amarillo Limón / Lemon Yellow",
+		"hex": "#D3D96B",
+		"type": "matte"
+	},
+	{
+		"code": "RV 129",
+		"name": "Verde Orégano / Oregano Green",
+		"hex": "#9BA836",
+		"type": "matte"
+	},
+	{
+		"code": "RV 60",
+		"name": "Verde Kripton / Krypton Green",
+		"hex": "#768632",
+		"type": "matte"
+	},
+	{
+		"code": "RV 130",
+		"name": "Verde Euskadi / Euskadi Green",
+		"hex": "#4F5D2F",
+		"type": "matte"
+	},
+	{
+		"code": "RV 131",
+		"name": "Verde Comarca / Comarca Green",
+		"hex": "#343E23",
+		"type": "matte"
+	},
+	{
+		"code": "RV 132",
+		"name": "Verde Borneo / Borneo Green",
+		"hex": "#1F2819",
+		"type": "matte"
+	},
+	{
+		"code": "RV 133",
+		"name": "Verde Dharma / Dharma Green",
+		"hex": "#171E14",
+		"type": "matte"
+	},
+	{
+		"code": "RV 134",
+		"name": "Verde Infinito / Infinity Green",
+		"hex": "#111510",
+		"type": "matte"
+	},
+	{
+		"code": "RV 1017",
+		"name": "Melocotón / Peach",
+		"hex": "#FBAA53",
+		"type": "matte"
+	},
+	{
+		"code": "RV 1028",
+		"name": "Amarillo Medio / Medium Yellow",
+		"hex": "#FAA01A",
+		"type": "matte"
+	},
+	{
+		"code": "RV 207",
+		"name": "Mango / Mango",
+		"hex": "#F47920",
+		"type": "matte"
+	},
+	{
+		"code": "RV 270",
+		"name": "Azul Formentera / Formentera Blue",
+		"hex": "#00A5DF",
+		"type": "matte"
+	},
+	{
+		"code": "RV 269",
+		"name": "Azul Génesis / Genesis Blue",
+		"hex": "#008CC1",
+		"type": "matte"
+	},
+	{
+		"code": "RV 268",
+		"name": "Azul Tramontana / Tramontana Blue",
+		"hex": "#007396",
+		"type": "matte"
+	},
+	{
+		"code": "RV 278",
+		"name": "Rosa Joker / Joker Pink",
+		"hex": "#E4729F",
+		"type": "matte"
+	},
+	{
+		"code": "RV 277",
+		"name": "Rosa Disco / Disco Pink",
+		"hex": "#DE4D8A",
+		"type": "matte"
+	},
+	{
+		"code": "RV 279",
+		"name": "Rosa Rosario / Rosario Pink",
+		"hex": "#D11C6E",
+		"type": "matte"
+	},
+	{
+		"code": "RV 3020",
+		"name": "Rojo Claro / Light Red",
+		"hex": "#E4312B",
+		"type": "matte"
+	},
+	{
+		"code": "RV 241",
+		"name": "Rojo Madrid / Madrid Red",
+		"hex": "#C8102E",
+		"type": "matte"
+	},
+	{
+		"code": "RV 245",
+		"name": "Cian / Cyan",
+		"hex": "#00A1E4",
+		"type": "matte"
+	},
+	{
+		"code": "RV 243",
+		"name": "Azul Babilonia / Babylon Blue",
+		"hex": "#005596",
+		"type": "matte"
+	},
+	{
+		"code": "Blanco",
+		"name": "Blanco / White",
+		"hex": "#FFFFFF",
+		"type": "matte"
+	},
+	{
+		"code": "Negro",
+		"name": "Negro / Black",
+		"hex": "#000000",
+		"type": "matte"
+	},
+	{
+		"code": "Plata Joya",
+		"name": "Plata Joya / Jewel Silver",
+		"hex": "#A6A6A6",
+		"type": "matte"
+	},
+	{
+		"code": "Oro Marco",
+		"name": "Oro Marco / Frame Gold",
+		"hex": "#C5A059",
+		"type": "matte"
+	},
+	{
+		"code": "SPECTRAL",
+		"name": "Amarillo Etéreo / Ethereal Yellow",
+		"hex": "#FFF200",
+		"type": "matte"
+	},
+	{
+		"code": "SPECTRAL",
+		"name": "Naranja Calima / Calima Orange",
+		"hex": "#F37023",
+		"type": "matte"
+	},
+	{
+		"code": "SPECTRAL",
+		"name": "Rojo Alma / Soul Red",
+		"hex": "#ED1C24",
+		"type": "matte"
+	},
+	{
+		"code": "SPECTRAL",
+		"name": "Marrón Judea / Judea Brown",
+		"hex": "#8A532A",
+		"type": "matte"
+	},
+	{
+		"code": "SPECTRAL",
+		"name": "Violeta Aura / Aura Violet",
+		"hex": "#5A4A9C",
+		"type": "matte"
+	},
+	{
+		"code": "SPECTRAL",
+		"name": "Azul Atmósfera / Atmosphere Blue",
+		"hex": "#1C75BC",
+		"type": "matte"
+	},
+	{
+		"code": "SPECTRAL",
+		"name": "Verde Brisa / Breeze Green",
+		"hex": "#52B74A",
+		"type": "matte"
+	},
+	{
+		"code": "SPECTRAL",
+		"name": "Blanco Aire / Air White",
+		"hex": "#FFFFFF",
+		"type": "matte"
+	},
+	{
+		"code": "SPECTRAL",
+		"name": "Gris Humo / Smoke Grey",
+		"hex": "#939598",
+		"type": "matte"
+	},
+	{
+		"code": "SPECTRAL",
+		"name": "Negro Sombra / Shadow Black",
+		"hex": "#000000",
+		"type": "matte"
+	},
+	{
+		"code": "Amarillo Fluorescente",
+		"name": "Amarillo Fluorescente / Fluorescent Yellow",
+		"hex": "#FFF200",
+		"type": "matte"
+	},
+	{
+		"code": "Naranja Fluorescente",
+		"name": "Naranja Fluorescente / Fluorescent Orange",
+		"hex": "#FF5F00",
+		"type": "matte"
+	},
+	{
+		"code": "Rojo Fluorescente",
+		"name": "Rojo Fluorescente / Fluorescent Red",
+		"hex": "#FF2A4B",
+		"type": "matte"
+	},
+	{
+		"code": "Fucsia Fluorescente",
+		"name": "Fucsia Fluorescente / Fluorescent Fuchsia",
+		"hex": "#EC008C",
+		"type": "matte"
+	},
+	{
+		"code": "Violeta Fluorescente",
+		"name": "Violeta Fluorescente / Fluorescent Violet",
+		"hex": "#92278F",
+		"type": "matte"
+	},
+	{
+		"code": "Azul Fluorescente",
+		"name": "Azul Fluorescente / Fluorescent Blue",
+		"hex": "#00AEEF",
+		"type": "matte"
+	},
+	{
+		"code": "Verde Fluorescente",
+		"name": "Verde Fluorescente / Fluorescent Green",
+		"hex": "#39B54A",
+		"type": "matte"
+	},
+	{
+		"code": "RV 185",
+		"name": "Azul Ángel / Angel Blue",
+		"hex": "#D2E1EC",
+		"type": "matte"
+	},
+	{
+		"code": "RV 156",
+		"name": "Azul Barceloneta / Barceloneta Blue",
+		"hex": "#A8CCE4",
+		"type": "matte"
+	},
+	{
+		"code": "RV 157",
+		"name": "Azul Thalassa / Thalassa Blue",
+		"hex": "#76B1DA",
+		"type": "matte"
+	},
+	{
+		"code": "RV 158",
+		"name": "Azul Perseo / Perseus Blue",
+		"hex": "#4793CC",
+		"type": "matte"
+	},
+	{
+		"code": "RV 159",
+		"name": "Azul Odisea / Odyssey Blue",
+		"hex": "#1B73B2",
+		"type": "matte"
+	},
+	{
+		"code": "RV 160",
+		"name": "Azul Eureka / Eureka Blue",
+		"hex": "#0E5A94",
+		"type": "matte"
+	},
+	{
+		"code": "RV 161",
+		"name": "Azul Jase / Jase Blue",
+		"hex": "#124268",
+		"type": "matte"
+	},
+	{
+		"code": "RV 162",
+		"name": "Azul Profundo / Deep Blue",
+		"hex": "#0D2C47",
+		"type": "matte"
+	},
+	{
+		"code": "RV 163",
+		"name": "Azul Poseidón / Poseydon Blue",
+		"hex": "#091D30",
+		"type": "matte"
+	},
+	{
+		"code": "RV 186",
+		"name": "Verde Virgen / Virgin Green",
+		"hex": "#E0EFE5",
+		"type": "matte"
+	},
+	{
+		"code": "RV 142",
+		"name": "Verde Géminis / Gemini Green",
+		"hex": "#BADBCE",
+		"type": "matte"
+	},
+	{
+		"code": "RV 6027",
+		"name": "Verde Luz / Luminous Green",
+		"hex": "#94D1C3",
+		"type": "matte"
+	},
+	{
+		"code": "RV 144",
+		"name": "Verde Bali / Bali Green",
+		"hex": "#63C1B6",
+		"type": "matte"
+	},
+	{
+		"code": "RV 145",
+		"name": "Verde Erasmus / Erasmus Green",
+		"hex": "#27A7A2",
+		"type": "matte"
+	},
+	{
+		"code": "RV 5018",
+		"name": "Turquesa / Turquoise",
+		"hex": "#00818A",
+		"type": "matte"
+	},
+	{
+		"code": "RV 146",
+		"name": "Azul Gloria / Glory Blue",
+		"hex": "#12606C",
+		"type": "matte"
+	},
+	{
+		"code": "RV 147",
+		"name": "Azul Pegasus / Pegasus Blue",
+		"hex": "#0C434E",
+		"type": "matte"
+	},
+	{
+		"code": "RV 148",
+		"name": "Azul Hércules / Hercules Blue",
+		"hex": "#072F38",
+		"type": "matte"
+	},
+	{
+		"code": "RV 187",
+		"name": "Verde Vespa / Vespa Green",
+		"hex": "#E6EED9",
+		"type": "matte"
+	},
+	{
+		"code": "RV 177",
+		"name": "Eldorado / Eldorado",
+		"hex": "#EAA41A",
+		"type": "matte"
+	},
+	{
+		"code": "RV 178",
+		"name": "Tibet / Tibet",
+		"hex": "#CD7A23",
+		"type": "matte"
+	},
+	{
+		"code": "RV 8023",
+		"name": "Mostaza / Mustard",
+		"hex": "#A15B25",
+		"type": "matte"
+	},
+	{
+		"code": "RV 99",
+		"name": "Marrón Glacé / Glacé Brown",
+		"hex": "#6C3A1D",
+		"type": "matte"
+	},
+	{
+		"code": "RV 199",
+		"name": "Verde Java / Java Green",
+		"hex": "#76C4BA",
+		"type": "matte"
+	},
+	{
+		"code": "RV 182",
+		"name": "Verde Esmeralda / Emerald Green",
+		"hex": "#1E9D8E",
+		"type": "matte"
+	},
+	{
+		"code": "RV 183",
+		"name": "Verde Berilo / Beryl Green",
+		"hex": "#0A746E",
+		"type": "matte"
+	},
+	{
+		"code": "RV 179",
+		"name": "Verde Bonsai / Bonsai Green",
+		"hex": "#BDCDA2",
+		"type": "matte"
+	},
+	{
+		"code": "RV 180",
+		"name": "Verde Thai / Thai Green",
+		"hex": "#92A573",
+		"type": "matte"
+	},
+	{
+		"code": "RV 181",
+		"name": "Verde Laberinto / Labyrinth Green",
+		"hex": "#505E3D",
+		"type": "matte"
+	},
+	{
+		"code": "RV 267",
+		"name": "Amarillo Azufre / Sulfur Yellow",
+		"hex": "#EDE517",
+		"type": "matte"
+	},
+	{
+		"code": "RV 266",
+		"name": "Verde Psycho / Psycho Green",
+		"hex": "#C9D422",
+		"type": "matte"
+	},
+	{
+		"code": "RV 265",
+		"name": "Verde Sónar / Sonar Green",
+		"hex": "#B5C11E",
+		"type": "matte"
+	},
+	{
+		"code": "RV 281",
+		"name": "Verde Láser / Laser Green",
+		"hex": "#84BA42",
+		"type": "matte"
+	},
+	{
+		"code": "RV 282",
+		"name": "Verde Laos / Laos Green",
+		"hex": "#64A643",
+		"type": "matte"
+	},
+	{
+		"code": "RV 280",
+		"name": "Verde Hulk / Hulk Green",
+		"hex": "#4C9A3D",
+		"type": "matte"
+	},
+	{
+		"code": "RV 272",
+		"name": "Verde Menta / Mint Green",
+		"hex": "#5CB887",
+		"type": "matte"
+	},
+	{
+		"code": "RV 273",
+		"name": "Verde Iguana / Iguana Green",
+		"hex": "#80C565",
+		"type": "matte"
+	},
+	{
+		"code": "RV 271",
+		"name": "Verde Mystic / Mystic Green",
+		"hex": "#3EAA5B",
+		"type": "matte"
+	},
+	{
+		"code": "RV 300",
+		"name": "Gris Tofu / Tofu Grey",
+		"hex": "#F1EAD4",
+		"type": "matte"
+	},
+	{
+		"code": "RV 301",
+		"name": "Gris Placebo / Placebo Grey",
+		"hex": "#E6DDC4",
+		"type": "matte"
+	},
+	{
+		"code": "RV 302",
+		"name": "Gris Koala / Koala Grey",
+		"hex": "#C3BCA8",
+		"type": "matte"
+	},
+	{
+		"code": "RV 303",
+		"name": "Gris Nativo / Native Grey",
+		"hex": "#A29D8B",
+		"type": "matte"
+	},
+	{
+		"code": "RV 304",
+		"name": "Gris Balboa / Balboa Grey",
+		"hex": "#A3A5A8",
+		"type": "matte"
+	},
+	{
+		"code": "RV 305",
+		"name": "Gris Nube / Cloud Grey",
+		"hex": "#BDC5CD",
+		"type": "matte"
+	},
+	{
+		"code": "RV 306",
+		"name": "Gris Invierno / Winter Grey",
+		"hex": "#99A7B3",
+		"type": "matte"
+	},
+	{
+		"code": "RV 307",
+		"name": "Gris Tiburón / Jaws Grey",
+		"hex": "#7A8C9E",
+		"type": "matte"
+	},
+	{
+		"code": "RV 308",
+		"name": "Gris Ballena / Whale Grey",
+		"hex": "#6C7D93",
+		"type": "matte"
+	},
+	{
+		"code": "RV 309",
+		"name": "Gris Chernóbil / Chernobyl Grey",
+		"hex": "#505E70",
+		"type": "matte"
+	},
+	{
+		"code": "RV 198",
+		"name": "Gris Stardust / Stardust Grey",
+		"hex": "#D1D3D4",
+		"type": "matte"
+	},
+	{
+		"code": "RV 7047",
+		"name": "Gris Siberia / Siberian Grey",
+		"hex": "#BCBEC0",
+		"type": "matte"
+	},
+	{
+		"code": "RV 118",
+		"name": "Gris Rita / Rita Grey",
+		"hex": "#A7A9AC",
+		"type": "matte"
+	},
+	{
+		"code": "RV 7040",
+		"name": "Gris Perla / Pearl Grey",
+		"hex": "#939598",
+		"type": "matte"
+	},
+	{
+		"code": "RV 119",
+		"name": "Gris Londres / London Grey",
+		"hex": "#777A7D",
+		"type": "matte"
+	},
+	{
+		"code": "RV 120",
+		"name": "Gris Lobo / Wolf Grey",
+		"hex": "#58595B",
+		"type": "matte"
+	},
+	{
+		"code": "RV 121",
+		"name": "Gris Ícaro / Icarus Grey",
+		"hex": "#414042",
+		"type": "matte"
+	},
+	{
+		"code": "RV 7016",
+		"name": "Gris Antracita / Anthracite Grey",
+		"hex": "#2B2C2C",
+		"type": "matte"
+	},
+	{
+		"code": "RV 78",
+		"name": "Gris Metrópolis / Metropolis Grey",
+		"hex": "#1C1D21",
+		"type": "matte"
+	},
+	{
+		"code": "RV 1013",
+		"name": "Blanco Hueso / Bone White",
+		"hex": "#F5EFE0",
+		"type": "matte"
+	},
+	{
+		"code": "RV 135",
+		"name": "Marrón Safari / Safari Brown",
+		"hex": "#D7C594",
+		"type": "matte"
+	},
+	{
+		"code": "RV 136",
+		"name": "Marrón Inca / Inca Brown",
+		"hex": "#C6AA67",
+		"type": "matte"
+	},
+	{
+		"code": "RV 137",
+		"name": "Marrón Kraft / Kraft Brown",
+		"hex": "#AE8E4E",
+		"type": "matte"
+	},
+	{
+		"code": "RV 138",
+		"name": "Marraquech / Marrakech",
+		"hex": "#8A6D3A",
+		"type": "matte"
+	},
+	{
+		"code": "RV 139",
+		"name": "Marrón Secuoya / Sequoia Brown",
+		"hex": "#6C522B",
+		"type": "matte"
+	},
+	{
+		"code": "RV 140",
+		"name": "Marrón Topo / Topo Brown",
+		"hex": "#4E3A1F",
+		"type": "matte"
+	},
+	{
+		"code": "RV 141",
+		"name": "Marrón Góndola / Gondola Brown",
+		"hex": "#332415",
+		"type": "matte"
+	},
+	{
+		"code": "RV 191",
+		"name": "Marrón Jaima / Jaima Brown",
+		"hex": "#DDD1BF",
+		"type": "matte"
+	},
+	{
+		"code": "RV 94",
+		"name": "Marrón Dingo / Dingo Brown",
+		"hex": "#ECCFB4",
+		"type": "matte"
+	},
+	{
+		"code": "RV 95",
+		"name": "Marrón Tana / Tana Brown",
+		"hex": "#DCA783",
+		"type": "matte"
+	},
+	{
+		"code": "RV 96",
+		"name": "Montserrat / Montserrat",
+		"hex": "#C38C60",
+		"type": "matte"
+	},
+	{
+		"code": "RV 97",
+		"name": "Marrón Chiapas / Chiapas Brown",
+		"hex": "#A26E40",
+		"type": "matte"
+	},
+	{
+		"code": "RV 98",
+		"name": "Marrón Frijol / Bean Brown",
+		"hex": "#7E4D27",
+		"type": "matte"
+	},
+	{
+		"code": "RV 100",
+		"name": "Marrón Café / Coffee Brown",
+		"hex": "#4E2F17",
+		"type": "matte"
+	},
+	{
+		"code": "RV 35",
+		"name": "Marrón Chocolate / Chocolate Brown",
+		"hex": "#372010",
+		"type": "matte"
+	},
+	{
+		"code": "RV 101",
+		"name": "Marrón Ébano / Ebony Brown",
+		"hex": "#20120A",
+		"type": "matte"
+	},
+	{
+		"code": "RV 86",
+		"name": "Rosa Boreal / Boreal Pink",
+		"hex": "#DDA5B8",
+		"type": "matte"
+	},
+	{
+		"code": "RV 87",
+		"name": "Rosa Stereo / Stereo Pink",
+		"hex": "#BE7B93",
+		"type": "matte"
+	},
+	{
+		"code": "RV 88",
+		"name": "Rosa Single / Single Pink",
+		"hex": "#9B5972",
+		"type": "matte"
+	},
+	{
+		"code": "RV 89",
+		"name": "Rojo Compacto / Compact Red",
+		"hex": "#843B55",
+		"type": "matte"
+	},
+	{
+		"code": "RV 90",
+		"name": "Rojo Bitácora / Bitacora Red",
+		"hex": "#6E1B3A",
+		"type": "matte"
+	},
+	{
+		"code": "RV 91",
+		"name": "Rojo Pandora / Pandora Red",
+		"hex": "#59102C",
+		"type": "matte"
+	},
+	{
+		"code": "RV 92",
+		"name": "Rojo Gaudí / Gaudi Red",
+		"hex": "#3C0B1D",
+		"type": "matte"
+	},
+	{
+		"code": "RV 93",
+		"name": "Rojo Stendhal / Stendhal Red",
+		"hex": "#1E060E",
+		"type": "matte"
+	},
+	{
+		"code": "RV 197",
+		"name": "Marrón Penélope / Penelope Brown",
+		"hex": "#E9D2C4",
+		"type": "matte"
+	},
+	{
+		"code": "RV 176",
+		"name": "Marrón Sensible / Sensible Brown",
+		"hex": "#DCB8A6",
+		"type": "matte"
+	},
+	{
+		"code": "RV 203",
+		"name": "Marrón Roble / Oak Brown",
+		"hex": "#AA7263",
+		"type": "matte"
+	},
+	{
+		"code": "RV 204",
+		"name": "Marrón Interrail / Interrail Brown",
+		"hex": "#8C4E42",
+		"type": "matte"
+	},
+	{
+		"code": "RV 205",
+		"name": "Marrón Guerrero / Warrior Brown",
+		"hex": "#6D1A22",
+		"type": "matte"
+	},
+	{
+		"code": "RV 200",
+		"name": "Plancton / Plancton",
+		"hex": "#E6CCB9",
+		"type": "matte"
+	},
+	{
+		"code": "RV 64",
+		"name": "Rosa Respeto / Respect Pink",
+		"hex": "#A28388",
+		"type": "matte"
+	},
+	{
+		"code": "RV 201",
+		"name": "Marrón Scarlet / Scarlet Brown",
+		"hex": "#835C62",
+		"type": "matte"
+	},
+	{
+		"code": "RV 202",
+		"name": "Marrón Mosquito / Mosquito Brown",
+		"hex": "#55383B",
+		"type": "matte"
+	},
+	{
+		"code": "RV 313",
+		"name": "Azul Martínez / Martinez Blue",
+		"hex": "#A3BDDB",
+		"type": "matte"
+	},
+	{
+		"code": "RV 314",
+		"name": "Azul Romero / Rosemary Blue",
+		"hex": "#83A2C6",
+		"type": "matte"
+	},
+	{
+		"code": "RV 315",
+		"name": "Azul Bailarinas / Dancer Blue",
+		"hex": "#6387B2",
+		"type": "matte"
+	},
+	{
+		"code": "RV 316",
+		"name": "Azul Marseille / Marseille Blue",
+		"hex": "#40699A",
+		"type": "matte"
+	},
+	{
+		"code": "RV 317",
+		"name": "Azul Porto / Porto Blue",
+		"hex": "#2B4F81",
+		"type": "matte"
+	},
+	{
+		"code": "RV 318",
+		"name": "Azul Ween / Ween Blue",
+		"hex": "#1F3A66",
+		"type": "matte"
+	},
+	{
+		"code": "RV 319",
+		"name": "Azul Tuareg / Tuareg Blue",
+		"hex": "#1A2A51",
+		"type": "matte"
+	},
+	{
+		"code": "RV 320",
+		"name": "Azul Mantra / Mantra Blue",
+		"hex": "#141C3B",
+		"type": "matte"
+	},
+	{
+		"code": "RV 184",
+		"name": "Azul Lluvia / Rain Blue",
+		"hex": "#BCE3F1",
+		"type": "matte"
+	},
+	{
+		"code": "RV 149",
+		"name": "Azul Hydra / Hydra Blue",
+		"hex": "#84CCE6",
+		"type": "matte"
+	},
+	{
+		"code": "RV 150",
+		"name": "Azul Argo / Argo Blue",
+		"hex": "#3FAAD4",
+		"type": "matte"
+	},
+	{
+		"code": "RV 151",
+		"name": "Azul Libertad / Freedom Blue",
+		"hex": "#008CC3",
+		"type": "matte"
+	},
+	{
+		"code": "RV 152",
+		"name": "Azul Europa / Europe Blue",
+		"hex": "#006FA6",
+		"type": "matte"
+	},
+	{
+		"code": "RV 30",
+		"name": "Azul Eléctrico / Electric Blue",
+		"hex": "#00538D",
+		"type": "matte"
+	},
+	{
+		"code": "RV 5005",
+		"name": "Azul Oscuro / Dark Blue",
+		"hex": "#083B6A",
+		"type": "matte"
+	},
+	{
+		"code": "RV 154",
+		"name": "Azul Tornado / Twister Blue",
+		"hex": "#0E294D",
+		"type": "matte"
+	},
+	{
+		"code": "RV 5013",
+		"name": "Azul Marino / Navy Blue",
+		"hex": "#0D1B33",
+		"type": "matte"
+	},
+	{
+		"code": "RV 189",
+		"name": "Amarillo Ipanema / Ipanema Yellow",
+		"hex": "#FFF69E",
+		"type": "matte"
+	},
+	{
+		"code": "RV 20",
+		"name": "Amarillo Fiesta / Party Yellow",
+		"hex": "#FFF054",
+		"type": "matte"
+	},
+	{
+		"code": "RV 109",
+		"name": "Amarillo Canarias / Canarias Yellow",
+		"hex": "#FFE600",
+		"type": "matte"
+	},
+	{
+		"code": "RV 1021",
+		"name": "Amarillo Claro / Light Yellow",
+		"hex": "#FED403",
+		"type": "matte"
+	},
+	{
+		"code": "RV 110",
+		"name": "Amarillo Yosemite / Yosemite Yellow",
+		"hex": "#D3C20D",
+		"type": "matte"
+	},
+	{
+		"code": "RV 111",
+		"name": "Verde Babel / Babel Green",
+		"hex": "#9FA125",
+		"type": "matte"
+	},
+	{
+		"code": "RV 112",
+		"name": "Verde Misión / Mision Green",
+		"hex": "#767A26",
+		"type": "matte"
+	},
+	{
+		"code": "RV 113",
+		"name": "Verde Dragón / Dragon Green",
+		"hex": "#50541E",
+		"type": "matte"
+	},
+	{
+		"code": "RV 114",
+		"name": "Verde Maya / Maya Green",
+		"hex": "#2B3014",
+		"type": "matte"
+	},
+	{
+		"code": "RV 192",
+		"name": "Sundance / Sundance",
+		"hex": "#F6CCA1",
+		"type": "matte"
+	},
+	{
+		"code": "RV 102",
+		"name": "Naranja Dalai / Dalai Orange",
+		"hex": "#F4B274",
+		"type": "matte"
+	},
+	{
+		"code": "RV 103",
+		"name": "Naranja Plural / Plural Orange",
+		"hex": "#F19548",
+		"type": "matte"
+	},
+	{
+		"code": "RV 50",
+		"name": "Naranja Solar / Solar Orange",
+		"hex": "#EE792B",
+		"type": "matte"
+	},
+	{
+		"code": "RV 105",
+		"name": "Mandarina / Tangerine",
+		"hex": "#EA5F23",
+		"type": "matte"
+	},
+	{
+		"code": "RV 106",
+		"name": "Naranja Lava / Lava Orange",
+		"hex": "#E54724",
+		"type": "matte"
+	},
+	{
+		"code": "RV 2004",
+		"name": "Naranja / Orange",
+		"hex": "#E02E24",
+		"type": "matte"
+	},
+	{
+		"code": "RV 107",
+		"name": "Naranja Marte / Mars Orange",
+		"hex": "#BE2026",
+		"type": "matte"
+	},
+	{
+		"code": "RV 108",
+		"name": "Naranja Fénix / Phoenix Orange",
+		"hex": "#95121A",
+		"type": "matte"
+	},
+	{
+		"code": "RV 190",
+		"name": "Blanco Malta / Malta White",
+		"hex": "#F2EBE1",
+		"type": "matte"
+	},
+	{
+		"code": "RV 193",
+		"name": "Chicle / Chewing Gum",
+		"hex": "#E0A2B4",
+		"type": "matte"
+	},
+	{
+		"code": "RV 115",
+		"name": "Tutti Frutti / Tutti Frutti",
+		"hex": "#EF7D8C",
+		"type": "matte"
+	},
+	{
+		"code": "RV 3017",
+		"name": "Rojo Fiebre / Fever Red",
+		"hex": "#E84E5E",
+		"type": "matte"
+	},
+	{
+		"code": "RV 116",
+		"name": "Rojo Sangre / Blood Red",
+		"hex": "#DD1D33",
+		"type": "matte"
+	},
+	{
+		"code": "RV 3001",
+		"name": "Rojo Vivo / Vivid Red",
+		"hex": "#BE1126",
+		"type": "matte"
+	},
+	{
+		"code": "RV 47",
+		"name": "Rojo Clandestino / Clandestine Red",
+		"hex": "#970E21",
+		"type": "matte"
+	},
+	{
+		"code": "RV 3004",
+		"name": "Rojo Burdeos / Bordeaux Red",
+		"hex": "#6D0D1D",
+		"type": "matte"
+	},
+	{
+		"code": "RV 3007",
+		"name": "Rojo Cherokee / Cherokee Red",
+		"hex": "#4C0D18",
+		"type": "matte"
+	},
+	{
+		"code": "RV 77",
+		"name": "Rojo Noche / Red Night",
+		"hex": "#270810",
+		"type": "matte"
+	},
+	{
+		"code": "RV 194",
+		"name": "Rosa Supernova / Supernova Pink",
+		"hex": "#F4B5C6",
+		"type": "matte"
+	},
+	{
+		"code": "RV 164",
+		"name": "Rosa Tokyo / Tokyo Pink",
+		"hex": "#F08FAD",
+		"type": "matte"
+	},
+	{
+		"code": "RV 165",
+		"name": "Rosa Orquídea / Orchid Pink",
+		"hex": "#E96493",
+		"type": "matte"
+	},
+	{
+		"code": "RV 4003",
+		"name": "Erika / Erika",
+		"hex": "#DF367C",
+		"type": "matte"
+	},
+	{
+		"code": "RV 4010",
+		"name": "Magenta / Magenta",
+		"hex": "#D1006A",
+		"type": "matte"
+	},
+	{
+		"code": "RV 166",
+		"name": "Rojo Açaí / Açai Red",
+		"hex": "#A20050",
+		"type": "matte"
+	},
+	{
+		"code": "RV 167",
+		"name": "Rojo Rioja / Rioja Red",
+		"hex": "#76003A",
+		"type": "matte"
+	},
+	{
+		"code": "RV 168",
+		"name": "Rojo Ira / Danger Red",
+		"hex": "#500028",
+		"type": "matte"
+	},
+	{
+		"code": "RV 169",
+		"name": "Rojo Taurus / Taurus Red",
+		"hex": "#2F0019",
+		"type": "matte"
+	},
+	{
+		"code": "RV 196",
+		"name": "Rosa Saudade / Saudade Pink",
+		"hex": "#F0DFE3",
+		"type": "matte"
+	},
+	{
+		"code": "RV 321",
+		"name": "Violeta Abril / April Violet",
+		"hex": "#CAAFD2",
+		"type": "matte"
+	},
+	{
+		"code": "RV 195",
+		"name": "Violeta Shiva / Shiva Violet",
+		"hex": "#B495C3",
+		"type": "matte"
+	},
+	{
+		"code": "RV 322",
+		"name": "Violeta Arlet / Arlet Violet",
+		"hex": "#A07DB4",
+		"type": "matte"
+	},
+	{
+		"code": "RV 170",
+		"name": "Violeta Persia / Persia Violet",
+		"hex": "#8961A3",
+		"type": "matte"
+	},
+	{
+		"code": "RV 323",
+		"name": "Violeta Mandala / Mandala Violet",
+		"hex": "#7A5099",
+		"type": "matte"
+	},
+	{
+		"code": "RV 276",
+		"name": "Obispo / Bishop Violet",
+		"hex": "#6D3B8E",
+		"type": "matte"
+	},
+	{
+		"code": "RV 275",
+		"name": "Violeta Raval / Raval Violet",
+		"hex": "#5F2683",
+		"type": "matte"
+	},
+	{
+		"code": "RV 283",
+		"name": "Violeta Sultán / Sultan Violet",
+		"hex": "#511770",
+		"type": "matte"
+	},
+	{
+		"code": "RV 274",
+		"name": "V. Reverendo / Reverend Violet",
+		"hex": "#3E0B5D",
+		"type": "matte"
+	},
+	{
+		"code": "RV 310",
+		"name": "Violeta República / Republic Violet",
+		"hex": "#6C6693",
+		"type": "matte"
+	},
+	{
+		"code": "RV 311",
+		"name": "Violeta Woodstock / Woodstock Violet",
+		"hex": "#584E81",
+		"type": "matte"
+	},
+	{
+		"code": "RV 171",
+		"name": "Violeta Comunidad / Community Violet",
+		"hex": "#473971",
+		"type": "matte"
+	},
+	{
+		"code": "RV 172",
+		"name": "Violeta Destino / Destiny Violet",
+		"hex": "#3F2A65",
+		"type": "matte"
+	},
+	{
+		"code": "RV 173",
+		"name": "Ultravioleta / Ultraviolet",
+		"hex": "#371A5A",
+		"type": "matte"
+	},
+	{
+		"code": "RV 174",
+		"name": "Violeta Venus / Venus Violet",
+		"hex": "#2E114D",
+		"type": "matte"
+	},
+	{
+		"code": "RV 175",
+		"name": "Violeta Electra / Electra Violet",
+		"hex": "#240E41",
+		"type": "matte"
+	},
+	{
+		"code": "RV 28",
+		"name": "Violeta Cosmos / Cosmos Violet",
+		"hex": "#1A0B33",
+		"type": "matte"
+	},
+	{
+		"code": "RV 27",
+		"name": "Violeta Vampiro / Vampire Violet",
+		"hex": "#110724",
+		"type": "matte"
+	},
+	{
+		"code": "RV 312",
+		"name": "Azul Sagan / Sagan Blue",
+		"hex": "#A2BDD7",
+		"type": "matte"
+	}
+]

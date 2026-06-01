@@ -1,0 +1,1130 @@
+[
+  {
+    "code": "BLK 1005",
+    "name": "SMASH137'S POTATO",
+    "hex": "#F2E8B8",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 1010",
+    "name": "EASTER YELLOW",
+    "hex": "#FFF59D",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 1025",
+    "name": "KICKING YELLOW",
+    "hex": "#FFE600",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 1030",
+    "name": "YELLOW",
+    "hex": "#FFD700",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 1045",
+    "name": "MELON YELLOW",
+    "hex": "#FFC400",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 1050",
+    "name": "TOPAZ",
+    "hex": "#E8B84A",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 1060",
+    "name": "HAZLE",
+    "hex": "#C4A574",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 1070",
+    "name": "PECAN NUT",
+    "hex": "#8B6914",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 1080",
+    "name": "MAROON",
+    "hex": "#5C1A1A",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 1110",
+    "name": "INDIAN SPICE",
+    "hex": "#D4A855",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 1120",
+    "name": "MASALA",
+    "hex": "#B8A88A",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 1130",
+    "name": "DELHI",
+    "hex": "#C9A227",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 1140",
+    "name": "BOMBAY",
+    "hex": "#8B7355",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 2060",
+    "name": "JUICE",
+    "hex": "#FF8C00",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 2070",
+    "name": "CLOCKWORK ORANGE",
+    "hex": "#FF6600",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 2075",
+    "name": "PURE ORANGE",
+    "hex": "#FF4500",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 2085",
+    "name": "HALLOWEEN",
+    "hex": "#E85D04",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 2093",
+    "name": "CODE RED",
+    "hex": "#FF0000",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 2110",
+    "name": "TOMORROW",
+    "hex": "#FF6B6B",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 2120",
+    "name": "ATOM'S MEGABLAST",
+    "hex": "#CC4444",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 3020",
+    "name": "FIRE ROSE",
+    "hex": "#CC0033",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 3062",
+    "name": "CARDINAL",
+    "hex": "#9B1B30",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 3065",
+    "name": "MERLOT",
+    "hex": "#722F37",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 3070",
+    "name": "CHERRY",
+    "hex": "#8B0000",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 3080",
+    "name": "WINEGUM",
+    "hex": "#4A0E0E",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 3100",
+    "name": "MISS PIGGY",
+    "hex": "#FFB6C1",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 3120",
+    "name": "PINK CADILLAC",
+    "hex": "#FF69B4",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 3130",
+    "name": "PINK PANTHER",
+    "hex": "#FF1493",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 3145",
+    "name": "PUNK PINK",
+    "hex": "#FF10F0",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 3148",
+    "name": "BEAST",
+    "hex": "#E0115F",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 3150",
+    "name": "FREAK",
+    "hex": "#C71585",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 3155",
+    "name": "PURPLE RAIN",
+    "hex": "#9B30FF",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 3160",
+    "name": "GOOD TIMES",
+    "hex": "#8B008B",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 3170",
+    "name": "IMPERATOR",
+    "hex": "#4B0082",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 6095",
+    "name": "PLANT",
+    "hex": "#1B4D3E",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 6110",
+    "name": "TIFFANY",
+    "hex": "#7FDBDA",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 6130",
+    "name": "COOL COLOGNE",
+    "hex": "#5F9EA0",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 6150",
+    "name": "MERMAID",
+    "hex": "#008B8B",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 6170",
+    "name": "NEPTUNE",
+    "hex": "#006666",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 6175",
+    "name": "RIFFS",
+    "hex": "#004D40",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 6180",
+    "name": "DROPS",
+    "hex": "#7FFFD4",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 6190",
+    "name": "NAPPIES",
+    "hex": "#40E0D0",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 6195",
+    "name": "SURGERY",
+    "hex": "#008080",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 6210",
+    "name": "E2E GREEN",
+    "hex": "#ADFF2F",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 6220",
+    "name": "REVOLT GREEN",
+    "hex": "#32CD32",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 6240",
+    "name": "ATLANTIS",
+    "hex": "#228B22",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 6310",
+    "name": "OLYMP",
+    "hex": "#98FB98",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 6320",
+    "name": "HOPE",
+    "hex": "#90EE90",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 6330",
+    "name": "PATINA",
+    "hex": "#6B8E6B",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 6340",
+    "name": "COPPER GREEN",
+    "hex": "#4A5D4A",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 6410",
+    "name": "TRABI",
+    "hex": "#9ACD32",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 6420",
+    "name": "BEETLE",
+    "hex": "#6B8E23",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 6430",
+    "name": "RESEDA",
+    "hex": "#556B2F",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 6510",
+    "name": "FOG",
+    "hex": "#B8C4B8",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 6520",
+    "name": "MIST",
+    "hex": "#A8B8A8",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 6530",
+    "name": "STORM",
+    "hex": "#6B7B6B",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 6610",
+    "name": "BAMBOO",
+    "hex": "#D4E157",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 6620",
+    "name": "HEMP",
+    "hex": "#C5D86D",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 6625",
+    "name": "BOA",
+    "hex": "#9E9D5A",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 6630",
+    "name": "PAN",
+    "hex": "#6B6B3A",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 6710",
+    "name": "PEAR GREEN",
+    "hex": "#CCFF00",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 6720",
+    "name": "LOST ISLAND",
+    "hex": "#AABB44",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 6725",
+    "name": "TROOPS",
+    "hex": "#6B7C3A",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 6730",
+    "name": "TOAD",
+    "hex": "#4A5D23",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 6905",
+    "name": "FACE",
+    "hex": "#E8DCC8",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 6910",
+    "name": "HANNIBAL",
+    "hex": "#D4C4A8",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 6920",
+    "name": "MURDOCK",
+    "hex": "#A89878",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 6930",
+    "name": "B.A BOSKO",
+    "hex": "#7A6B52",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 3200",
+    "name": "COCKTAIL",
+    "hex": "#FFDAB9",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 3220",
+    "name": "MR. CRAB",
+    "hex": "#FA8072",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 3240",
+    "name": "SUSHI",
+    "hex": "#FFB347",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 3305",
+    "name": "PATPONG",
+    "hex": "#FF69B4",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 3310",
+    "name": "PINK LEMONADE",
+    "hex": "#FF6EB4",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 3320",
+    "name": "LOLLIPOP",
+    "hex": "#FF00FF",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 3330",
+    "name": "BLOODY MARY",
+    "hex": "#DC143C",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 3920",
+    "name": "ILLUSION",
+    "hex": "#BF00FF",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 3940",
+    "name": "MAGIC",
+    "hex": "#8A2BE2",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 3995",
+    "name": "BUBBLE BATH",
+    "hex": "#E6E6FA",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 4000",
+    "name": "MS. JACKSON",
+    "hex": "#9370DB",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 4020",
+    "name": "MONSTER",
+    "hex": "#7B2CBF",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 4040",
+    "name": "PIMP VIOLET",
+    "hex": "#6A0DAD",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 4060",
+    "name": "GALAXY",
+    "hex": "#301934",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 4115",
+    "name": "LAVENDER",
+    "hex": "#E6E6FA",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 4130",
+    "name": "BLUE VELVET",
+    "hex": "#6667AB",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 4155",
+    "name": "ROYAL PURPLE",
+    "hex": "#7851A9",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 4160",
+    "name": "WIZARD",
+    "hex": "#4B0082",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 4182",
+    "name": "UNIVERSE",
+    "hex": "#1a1a2e",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 4210",
+    "name": "GUT",
+    "hex": "#BC8F8F",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 4230",
+    "name": "KIDNEY",
+    "hex": "#A0522D",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 4250",
+    "name": "LIVER",
+    "hex": "#5C4033",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 4260",
+    "name": "DUMMY",
+    "hex": "#D8B4B4",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 4280",
+    "name": "PLUM",
+    "hex": "#8E4585",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 4290",
+    "name": "AMETHYST",
+    "hex": "#5D3A5D",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 4310",
+    "name": "EDELGARD",
+    "hex": "#B0C4DE",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 4320",
+    "name": "BRUNHILDE",
+    "hex": "#87CEEB",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 4330",
+    "name": "WALTRAUT",
+    "hex": "#6B8E9F",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 4340",
+    "name": "IRMGARD",
+    "hex": "#5F7A8A",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 5020",
+    "name": "BABY BLUE",
+    "hex": "#89CFF0",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 5030",
+    "name": "LIGHT BLUE",
+    "hex": "#00BFFF",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 5070",
+    "name": "HORIZON",
+    "hex": "#4169E1",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 5077",
+    "name": "ROYAL BLUE",
+    "hex": "#002FA7",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 5080",
+    "name": "ULTRAMARINE",
+    "hex": "#120A8F",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 7010",
+    "name": "JAWS",
+    "hex": "#E8E8E8",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 7030",
+    "name": "MOUSE",
+    "hex": "#C0C0C0",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 7050",
+    "name": "SHARK",
+    "hex": "#808080",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 7070",
+    "name": "RHINO",
+    "hex": "#606060",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 7080",
+    "name": "ANT",
+    "hex": "#404040",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 7110",
+    "name": "GAMBETTA",
+    "hex": "#D4C4B0",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 7120",
+    "name": "LENNOX",
+    "hex": "#A89888",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 7130",
+    "name": "LAMBRATE",
+    "hex": "#787068",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 7140",
+    "name": "INDUSTRIILOR",
+    "hex": "#5A5248",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 7210",
+    "name": "HOUDINI",
+    "hex": "#C8D0D8",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 7220",
+    "name": "MORPHEUS",
+    "hex": "#98A8B0",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 7230",
+    "name": "NOSTRADAMUS",
+    "hex": "#687880",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 7320",
+    "name": "GHETTO",
+    "hex": "#484848",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 7340",
+    "name": "DUMBO",
+    "hex": "#383838",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 7360",
+    "name": "SLATE",
+    "hex": "#2F2F2F",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 8000",
+    "name": "IVORY",
+    "hex": "#FFFFF0",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 8010",
+    "name": "SAND",
+    "hex": "#E6D5B8",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 8020",
+    "name": "BEIGE",
+    "hex": "#D4B896",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 8030",
+    "name": "ICED COFFEE",
+    "hex": "#B8956A",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 8040",
+    "name": "CREMINO",
+    "hex": "#C4A574",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 8050",
+    "name": "FRAPPÉ",
+    "hex": "#A67B5B",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 8060",
+    "name": "CHOCOLATE",
+    "hex": "#5C3317",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 8070",
+    "name": "JAWA",
+    "hex": "#3D2314",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 8080",
+    "name": "RUST",
+    "hex": "#8B4513",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 8110",
+    "name": "ARABIAN",
+    "hex": "#C4B896",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 8120",
+    "name": "GOBI",
+    "hex": "#A89878",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 8130",
+    "name": "SYRIAN",
+    "hex": "#6B5B4A",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 8210",
+    "name": "AFTER",
+    "hex": "#CD5C5C",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 8220",
+    "name": "SNAIL",
+    "hex": "#B87333",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 8230",
+    "name": "KOI",
+    "hex": "#FF4500",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 8240",
+    "name": "FALLING",
+    "hex": "#8B0000",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 8250",
+    "name": "CANDY BAR",
+    "hex": "#800020",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 8260",
+    "name": "MUD",
+    "hex": "#4A3728",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 9001",
+    "name": "BLACK",
+    "hex": "#000000",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 5092",
+    "name": "DARK INDIGO",
+    "hex": "#1a1a4e",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 5125",
+    "name": "DOVE",
+    "hex": "#B8B8C8",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 5140",
+    "name": "SEAL",
+    "hex": "#4A4A4A",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 5160",
+    "name": "SPACE",
+    "hex": "#5A5A6A",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 5180",
+    "name": "TROUT",
+    "hex": "#A0A8B0",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 5185",
+    "name": "MARLIN",
+    "hex": "#6A7A8A",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 5190",
+    "name": "WHALE",
+    "hex": "#3A4A5A",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 5200",
+    "name": "ICE BLUE",
+    "hex": "#D4F1F9",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 5210",
+    "name": "LENOR",
+    "hex": "#B8C8D8",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 5230",
+    "name": "BLUE LAGOON",
+    "hex": "#0088CC",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 5250",
+    "name": "KNOCK OUT BLUE",
+    "hex": "#0044CC",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 5270",
+    "name": "SORRENTO BLUE",
+    "hex": "#003366",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 6000",
+    "name": "PISTACHIO",
+    "hex": "#93C572",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 6005",
+    "name": "ACID",
+    "hex": "#BFFF00",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 6010",
+    "name": "SLIMER",
+    "hex": "#7FFF00",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 6012",
+    "name": "OASIS",
+    "hex": "#6B8E23",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 6013",
+    "name": "SPRING",
+    "hex": "#C1E1C1",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 6015",
+    "name": "WILD LIME",
+    "hex": "#CCFF00",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 6045",
+    "name": "IRISH GREEN",
+    "hex": "#009A49",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 6055",
+    "name": "BOSTON",
+    "hex": "#006633",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 6060",
+    "name": "CELTIC",
+    "hex": "#004D33",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 6065",
+    "name": "BANKNOTE",
+    "hex": "#003322",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 6070",
+    "name": "TAG GREEN",
+    "hex": "#2E5A3A",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 6075",
+    "name": "HIPPIE",
+    "hex": "#5A8A5A",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 6080",
+    "name": "MESCALINE",
+    "hex": "#4A9A4A",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 6090",
+    "name": "WOODSTOCK",
+    "hex": "#66BB66",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 9090",
+    "name": "BLACK GLOSSY",
+    "hex": "#0a0a0a",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 9100",
+    "name": "SNOW WHITE",
+    "hex": "#FFFAFA",
+    "type": "matte"
+  },
+  {
+    "code": "BLK 9105",
+    "name": "WHITE",
+    "hex": "#FFFFFF",
+    "type": "matte"
+  },
+  {
+    "code": "BLK TR 1000",
+    "name": "TRUE YELLOW",
+    "hex": "#FFFF00",
+    "type": "matte"
+  },
+  {
+    "code": "BLK TR 1010",
+    "name": "50% TR. YELLOW",
+    "hex": "#FFFF99",
+    "type": "matte"
+  },
+  {
+    "code": "BLK TR 4000",
+    "name": "TRUE MAGENTA",
+    "hex": "#FF00FF",
+    "type": "matte"
+  },
+  {
+    "code": "BLK TR 4010",
+    "name": "50% TR. MAGENTA",
+    "hex": "#FF99FF",
+    "type": "matte"
+  },
+  {
+    "code": "BLK TR 5000",
+    "name": "TRUE CYAN",
+    "hex": "#00FFFF",
+    "type": "matte"
+  },
+  {
+    "code": "BLK TR 5010",
+    "name": "50% TR. CYAN",
+    "hex": "#99FFFF",
+    "type": "matte"
+  },
+  {
+    "code": "BLK CHR G",
+    "name": "GOLDCHROME",
+    "hex": "#D4AF37",
+    "type": "chrome"
+  },
+  {
+    "code": "BLK CHR C",
+    "name": "COPPERCHROME",
+    "hex": "#B87333",
+    "type": "chrome"
+  },
+  {
+    "code": "BLK CHR S",
+    "name": "SILVERCHROME",
+    "hex": "#C0C0C0",
+    "type": "chrome"
+  },
+  {
+    "code": "BLK CHR OS",
+    "name": "OUTLINE SILVER",
+    "hex": "#E8E8E8",
+    "type": "chrome"
+  },
+  {
+    "code": "BLK P 1000",
+    "name": "POWER YELLOW",
+    "hex": "#E8FF00",
+    "type": "matte"
+  },
+  {
+    "code": "BLK P 2000",
+    "name": "POWER ORANGE",
+    "hex": "#FF6600",
+    "type": "matte"
+  },
+  {
+    "code": "BLK P 3000",
+    "name": "POWER RED",
+    "hex": "#FF0040",
+    "type": "matte"
+  },
+  {
+    "code": "BLK P 4000",
+    "name": "POWER PINK",
+    "hex": "#FF1493",
+    "type": "matte"
+  },
+  {
+    "code": "BLK P 4100",
+    "name": "POWER VIOLET",
+    "hex": "#9400D3",
+    "type": "matte"
+  },
+  {
+    "code": "BLK P 5000",
+    "name": "POWER BLUE",
+    "hex": "#0040FF",
+    "type": "matte"
+  },
+  {
+    "code": "BLK P 6000",
+    "name": "POWER GREEN",
+    "hex": "#00FF40",
+    "type": "matte"
+  },
+  {
+    "code": "BLK IN 1000",
+    "name": "INFRA YELLOW",
+    "hex": "#E8FF20",
+    "type": "matte"
+  },
+  {
+    "code": "BLK IN 2000",
+    "name": "INFRA ORANGE",
+    "hex": "#FF8800",
+    "type": "matte"
+  },
+  {
+    "code": "BLK IN 3000",
+    "name": "INFRA RED",
+    "hex": "#FF2040",
+    "type": "matte"
+  },
+  {
+    "code": "BLK IN 4000",
+    "name": "INFRA PINK",
+    "hex": "#FF60A0",
+    "type": "matte"
+  },
+  {
+    "code": "BLK IN 4500",
+    "name": "INFRA VIOLET",
+    "hex": "#A020F0",
+    "type": "matte"
+  },
+  {
+    "code": "BLK IN 6000",
+    "name": "INFRA GREEN",
+    "hex": "#40FF60",
+    "type": "matte"
+  }
+]
