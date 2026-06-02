@@ -36,6 +36,11 @@ export default function Header() {
 					<li>
 						<NavLink to="/contact">Contact</NavLink>
 					</li>
+					{user?.role === "admin" && (
+						<li>
+							<NavLink to="/admin">Admin</NavLink>
+						</li>
+					)}
 					{user ? (
 						<li>
 							<NavLink to="/account">Account</NavLink>

@@ -83,4 +83,29 @@ router.get("/", protect, requireAdmin, async (req, res, next) => {
 	}
 });
 
+const ORDER_STATUSES = ["pending", "paid", "shipped", "delivered", "cancelled"];
+
+router.patch("/:id/status", protect, requireAdmin, async (req, res, next) => {
+	try {
+		const { status } = req.body;
+		if (!ORDER_STATUSES.includes(status)) {
+			return res.status(400).json({ message: "Invalid order status" });
+		}
+
+		const order = await Order.findByIdAndUpdate(
+			req.params.id,
+			{ status },
+			{ new: true, runValidators: true },
+		).populate("user", "name email");
+
+		if (!order) {
+			return res.status(404).json({ message: "Order not found" });
+		}
+
+		res.json({ order });
+	} catch (err) {
+		next(err);
+	}
+});
+
 export default router;
