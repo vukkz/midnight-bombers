@@ -63,7 +63,7 @@ export default function AdminUsers() {
 			) : (
 				<div className="admin-panel">
 					<div className="admin-table-wrap">
-						<table className="admin-table">
+						<table className="admin-table admin-table--stack">
 							<thead>
 								<tr>
 									<th>Name</th>
@@ -78,7 +78,7 @@ export default function AdminUsers() {
 									const self = isSelf(u._id);
 									return (
 										<tr key={u._id}>
-											<td>
+											<td data-label="Name">
 												{u.name}
 												{self && (
 													<>
@@ -87,8 +87,8 @@ export default function AdminUsers() {
 													</>
 												)}
 											</td>
-											<td>{u.email}</td>
-											<td>
+											<td data-label="Email">{u.email}</td>
+											<td data-label="Role">
 												<select
 													className="admin-select status-select"
 													value={u.role}
@@ -99,8 +99,8 @@ export default function AdminUsers() {
 													<option value="admin">admin</option>
 												</select>
 											</td>
-											<td>{new Date(u.createdAt).toLocaleDateString()}</td>
-											<td>
+											<td data-label="Joined">{new Date(u.createdAt).toLocaleDateString()}</td>
+											<td data-label="Actions">
 												<button
 													type="button"
 													className="admin-btn sm danger"

@@ -648,6 +648,23 @@ section {
 	box-shadow: 0 0 0 1px #222;
 }
 
+.color-swatch--out {
+	opacity: 0.55;
+	filter: grayscale(0.35);
+}
+
+.color-swatch-stock {
+	font-size: 10px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	opacity: 0.85;
+}
+
+.color-chart-message {
+	margin-bottom: 16px;
+}
+
 .color-swatch-info {
 	display: flex;
 	flex-direction: column;

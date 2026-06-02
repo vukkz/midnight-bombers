@@ -21,6 +21,10 @@ const mtn94Colors = JSON.parse(
 
 dotenv.config();
 
+function colorsWithStock(colors, defaultStock = 20) {
+	return colors.map((c) => ({ ...c, stock: c.stock ?? defaultStock }));
+}
+
 async function seed() {
 	const uri = process.env.MONGODB_URI;
 	if (!uri) {
@@ -47,12 +51,20 @@ async function seed() {
 
 	const products = seedProducts.map((p) => {
 		const { montanaBlackColors, mtn94Colors: hasMtn94Colors, ...rest } = p;
+		const colorVariants = montanaBlackColors
+			? colorsWithStock(montanaColors)
+			: hasMtn94Colors
+				? colorsWithStock(mtn94Colors)
+				: undefined;
+		const stock =
+			colorVariants != null
+				? colorVariants.reduce((sum, c) => sum + c.stock, 0)
+				: (p.stock ?? 20);
 		return {
 			...rest,
 			slug: slugify(p.name),
-			stock: p.stock ?? 20,
-			...(montanaBlackColors ? { colorVariants: montanaColors } : {}),
-			...(hasMtn94Colors ? { colorVariants: mtn94Colors } : {}),
+			stock,
+			...(colorVariants ? { colorVariants } : {}),
 		};
 	});
 	await Product.insertMany(products);

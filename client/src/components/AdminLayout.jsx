@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { NavLink, Outlet, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.jsx";
 
@@ -11,17 +12,37 @@ const NAV = [
 
 export default function AdminLayout() {
 	const { user, logout } = useAuth();
+	const [menuOpen, setMenuOpen] = useState(false);
+
+	const closeMenu = () => setMenuOpen(false);
 
 	return (
-		<div className="admin-shell">
+		<div className={`admin-shell${menuOpen ? " admin-shell--menu-open" : ""}`}>
+			<button
+				type="button"
+				className="admin-sidebar-backdrop"
+				aria-label="Close menu"
+				onClick={closeMenu}
+			/>
+
 			<aside className="admin-sidebar">
-				<div className="admin-sidebar-brand">
-					<img
-						src="/img/logo/midnightbomberswhite.png"
-						alt="Midnight Bombers"
-						height="48"
-					/>
-					<span>Admin</span>
+				<div className="admin-sidebar-head">
+					<div className="admin-sidebar-brand">
+						<img
+							src="/img/logo/midnightbomberswhite.png"
+							alt="Midnight Bombers"
+							height="48"
+						/>
+						<span>Admin</span>
+					</div>
+					<button
+						type="button"
+						className="admin-sidebar-close"
+						aria-label="Close menu"
+						onClick={closeMenu}
+					>
+						<i className="fa-solid fa-xmark" aria-hidden />
+					</button>
 				</div>
 				<nav className="admin-nav">
 					{NAV.map((item) => (
@@ -32,6 +53,7 @@ export default function AdminLayout() {
 							className={({ isActive }) =>
 								`admin-nav-link${isActive ? " active" : ""}`
 							}
+							onClick={closeMenu}
 						>
 							<i className={`fa-solid ${item.icon}`} aria-hidden />
 							{item.label}
@@ -39,7 +61,7 @@ export default function AdminLayout() {
 					))}
 				</nav>
 				<div className="admin-sidebar-footer">
-					<Link to="/" className="admin-nav-link">
+					<Link to="/" className="admin-nav-link" onClick={closeMenu}>
 						<i className="fa-solid fa-store" aria-hidden />
 						View site
 					</Link>
@@ -48,9 +70,19 @@ export default function AdminLayout() {
 
 			<div className="admin-main">
 				<header className="admin-topbar">
-					<div>
-						<p className="admin-topbar-label">Signed in as</p>
-						<p className="admin-topbar-name">{user?.name}</p>
+					<div className="admin-topbar-left">
+						<button
+							type="button"
+							className="admin-menu-btn"
+							aria-label="Open menu"
+							onClick={() => setMenuOpen(true)}
+						>
+							<i className="fa-solid fa-bars" aria-hidden />
+						</button>
+						<div>
+							<p className="admin-topbar-label">Signed in as</p>
+							<p className="admin-topbar-name">{user?.name}</p>
+						</div>
 					</div>
 					<button type="button" className="admin-logout-btn" onClick={() => logout()}>
 						Logout

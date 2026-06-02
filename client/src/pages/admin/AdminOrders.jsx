@@ -76,7 +76,7 @@ export default function AdminOrders() {
 			) : (
 				<div className="admin-panel">
 					<div className="admin-table-wrap">
-						<table className="admin-table">
+						<table className="admin-table admin-table--stack">
 							<thead>
 								<tr>
 									<th>Order</th>
@@ -91,14 +91,14 @@ export default function AdminOrders() {
 								{filtered.map((order) => (
 									<Fragment key={order._id}>
 										<tr>
-											<td>#{order._id.slice(-6)}</td>
-											<td>
+											<td data-label="Order">#{order._id.slice(-6)}</td>
+											<td data-label="Customer">
 												{order.user?.name}
 												<br />
 												<small>{order.user?.email}</small>
 											</td>
-											<td>{formatRsd(order.total)}</td>
-											<td>
+											<td data-label="Total">{formatRsd(order.total)}</td>
+											<td data-label="Status">
 												<select
 													className="admin-select status-select"
 													value={order.status}
@@ -114,8 +114,8 @@ export default function AdminOrders() {
 													))}
 												</select>
 											</td>
-											<td>{new Date(order.createdAt).toLocaleString()}</td>
-											<td>
+											<td data-label="Date">{new Date(order.createdAt).toLocaleString()}</td>
+											<td data-label="Details">
 												<button
 													type="button"
 													className="admin-btn sm"

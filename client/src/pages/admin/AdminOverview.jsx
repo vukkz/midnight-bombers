@@ -85,23 +85,25 @@ export default function AdminOverview() {
 				<div className="admin-panel">
 					<h2>Low stock alert</h2>
 					<div className="admin-table-wrap">
-						<table className="admin-table">
+						<table className="admin-table admin-table--stack">
 							<thead>
 								<tr>
 									<th>Product</th>
-									<th>Category</th>
-									<th>Brand</th>
+									<th>Color</th>
 									<th>Stock</th>
 								</tr>
 							</thead>
 							<tbody>
-								{stats.lowStockProducts.map((p) => (
-									<tr key={p._id}>
-										<td>{p.name}</td>
-										<td>{p.category}</td>
-										<td>{p.brand || "—"}</td>
-										<td>
-											<span className="admin-badge low-stock">{p.stock}</span>
+								{stats.lowStockProducts.map((row) => (
+									<tr key={`${row.productId}-${row.colorCode || "product"}`}>
+										<td data-label="Product">{row.productName}</td>
+										<td data-label="Color">
+											{row.type === "color"
+												? `${row.colorName} (${row.colorCode})`
+												: row.category || "—"}
+										</td>
+										<td data-label="Stock">
+											<span className="admin-badge low-stock">{row.stock}</span>
 										</td>
 									</tr>
 								))}
@@ -120,7 +122,7 @@ export default function AdminOverview() {
 					<p className="admin-empty">No orders yet.</p>
 				) : (
 					<div className="admin-table-wrap">
-						<table className="admin-table">
+						<table className="admin-table admin-table--stack">
 							<thead>
 								<tr>
 									<th>Order</th>
@@ -133,19 +135,19 @@ export default function AdminOverview() {
 							<tbody>
 								{stats.recentOrders.map((order) => (
 									<tr key={order._id}>
-										<td>#{order._id.slice(-6)}</td>
-										<td>
+										<td data-label="Order">#{order._id.slice(-6)}</td>
+										<td data-label="Customer">
 											{order.user?.name || "—"}
 											<br />
 											<small>{order.user?.email}</small>
 										</td>
-										<td>{formatRsd(order.total)}</td>
-										<td>
+										<td data-label="Total">{formatRsd(order.total)}</td>
+										<td data-label="Status">
 											<span className={`admin-badge ${order.status}`}>
 												{order.status}
 											</span>
 										</td>
-										<td>{new Date(order.createdAt).toLocaleDateString()}</td>
+										<td data-label="Date">{new Date(order.createdAt).toLocaleDateString()}</td>
 									</tr>
 								))}
 							</tbody>

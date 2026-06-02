@@ -22,6 +22,7 @@ const productSchema = new mongoose.Schema(
 				code: { type: String, required: true },
 				name: { type: String, required: true },
 				hex: { type: String, required: true },
+				stock: { type: Number, min: 0, default: 20 },
 				type: {
 					type: String,
 					enum: ["matte", "chrome", "transparent", "power", "infra"],

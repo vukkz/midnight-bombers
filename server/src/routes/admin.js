@@ -7,6 +7,7 @@ import { Product } from "../models/Product.js";
 import { Order } from "../models/Order.js";
 import { User } from "../models/User.js";
 import { protect, requireAdmin } from "../middleware/auth.js";
+import { findColorVariant, hasColorVariants, syncProductStockFromColors } from "../utils/stock.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const uploadsDir = join(__dirname, "../../uploads/products");
@@ -43,8 +44,7 @@ router.get("/stats", async (_req, res, next) => {
 			orderCounts,
 			totalUsers,
 			totalProducts,
-			lowStockCount,
-			lowStockProducts,
+			allProducts,
 			recentOrders,
 		] = await Promise.all([
 			Order.aggregate([
@@ -54,11 +54,7 @@ router.get("/stats", async (_req, res, next) => {
 			Order.aggregate([{ $group: { _id: "$status", count: { $sum: 1 } } }]),
 			User.countDocuments(),
 			Product.countDocuments(),
-			Product.countDocuments({ stock: { $lte: 5 } }),
-			Product.find({ stock: { $lte: 5 } })
-				.sort({ stock: 1 })
-				.limit(10)
-				.select("name stock category brand"),
+			Product.find().select("name stock category brand colorVariants"),
 			Order.find()
 				.populate("user", "name email")
 				.sort({ createdAt: -1 })
@@ -78,14 +74,43 @@ router.get("/stats", async (_req, res, next) => {
 
 		const totalOrders = Object.values(statusCounts).reduce((a, b) => a + b, 0);
 
+		const lowStockAlerts = [];
+		for (const product of allProducts) {
+			if (hasColorVariants(product)) {
+				for (const color of product.colorVariants) {
+					if ((color.stock ?? 0) <= 5) {
+						lowStockAlerts.push({
+							type: "color",
+							productId: product._id,
+							productName: product.name,
+							colorCode: color.code,
+							colorName: color.name,
+							stock: color.stock ?? 0,
+						});
+					}
+				}
+			} else if ((product.stock ?? 0) <= 5) {
+				lowStockAlerts.push({
+					type: "product",
+					productId: product._id,
+					productName: product.name,
+					stock: product.stock ?? 0,
+					category: product.category,
+					brand: product.brand,
+				});
+			}
+		}
+
+		lowStockAlerts.sort((a, b) => a.stock - b.stock);
+
 		res.json({
 			revenue: revenueAgg[0]?.total ?? 0,
 			totalOrders,
 			statusCounts,
 			totalUsers,
 			totalProducts,
-			lowStockCount,
-			lowStockProducts,
+			lowStockCount: lowStockAlerts.length,
+			lowStockProducts: lowStockAlerts.slice(0, 15),
 			recentOrders,
 		});
 	} catch (err) {
@@ -97,6 +122,61 @@ router.get("/products", async (_req, res, next) => {
 	try {
 		const products = await Product.find().sort({ createdAt: -1 });
 		res.json({ products });
+	} catch (err) {
+		next(err);
+	}
+});
+
+router.patch("/products/:id/colors/:colorCode/stock", async (req, res, next) => {
+	try {
+		const stock = parseInt(req.body.stock, 10);
+		if (Number.isNaN(stock) || stock < 0) {
+			return res.status(400).json({ message: "Stock must be a non-negative number" });
+		}
+
+		const product = await Product.findById(req.params.id);
+		if (!product) {
+			return res.status(404).json({ message: "Product not found" });
+		}
+
+		const colorCode = decodeURIComponent(req.params.colorCode);
+		const variant = findColorVariant(product, colorCode);
+		if (!variant) {
+			return res.status(404).json({ message: "Color not found" });
+		}
+
+		variant.stock = stock;
+		syncProductStockFromColors(product);
+		await product.save();
+
+		res.json({ product });
+	} catch (err) {
+		next(err);
+	}
+});
+
+/** One-time helper: assign default stock to color variants missing a stock value. */
+router.post("/migrate-color-stock", async (_req, res, next) => {
+	try {
+		const products = await Product.find({
+			colorVariants: { $exists: true, $not: { $size: 0 } },
+		});
+		let updated = 0;
+		for (const product of products) {
+			let changed = false;
+			for (const color of product.colorVariants) {
+				if (color.stock == null) {
+					color.stock = 20;
+					changed = true;
+				}
+			}
+			if (changed) {
+				syncProductStockFromColors(product);
+				await product.save();
+				updated++;
+			}
+		}
+		res.json({ message: `Updated ${updated} product(s) with default color stock.` });
 	} catch (err) {
 		next(err);
 	}

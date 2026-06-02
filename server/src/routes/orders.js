@@ -2,6 +2,7 @@ import { Router } from "express";
 import { Order } from "../models/Order.js";
 import { Product } from "../models/Product.js";
 import { protect, requireAdmin } from "../middleware/auth.js";
+import { deductLineStock, validateLineStock } from "../utils/stock.js";
 
 const router = Router();
 
@@ -25,8 +26,13 @@ router.post("/", protect, async (req, res, next) => {
 			if (!product) {
 				return res.status(400).json({ message: `Product not found: ${item.productId}` });
 			}
-			if (product.stock < item.quantity) {
-				return res.status(400).json({ message: `Insufficient stock for ${product.name}` });
+
+			const stockError = validateLineStock(product, {
+				quantity: item.quantity,
+				colorCode: item.colorCode,
+			});
+			if (stockError) {
+				return res.status(400).json({ message: stockError });
 			}
 
 			const lineTotal = product.price * item.quantity;
@@ -46,7 +52,10 @@ router.post("/", protect, async (req, res, next) => {
 				colorName: item.colorName,
 			});
 
-			product.stock -= item.quantity;
+			deductLineStock(product, {
+				quantity: item.quantity,
+				colorCode: item.colorCode,
+			});
 			await product.save();
 		}
 

@@ -3,6 +3,12 @@ import { Link, useParams } from "react-router-dom";
 import { api } from "../api/client.js";
 import { useCart } from "../context/CartContext.jsx";
 import ColorChart from "../components/ColorChart.jsx";
+import {
+	countColorsInStock,
+	getAvailableSimpleStock,
+	hasColorVariants,
+	isSimpleProductOutOfStock,
+} from "../utils/stock.js";
 
 export default function ProductPage() {
 	const { id } = useParams();
@@ -10,6 +16,7 @@ export default function ProductPage() {
 	const [product, setProduct] = useState(null);
 	const [qty, setQty] = useState(1);
 	const [error, setError] = useState("");
+	const [cartMsg, setCartMsg] = useState("");
 
 	useEffect(() => {
 		async function load() {
@@ -36,7 +43,10 @@ export default function ProductPage() {
 		return <section className="section-p1">Loading...</section>;
 	}
 
-	const hasColors = product.colorVariants?.length > 0;
+	const hasColors = hasColorVariants(product);
+	const outOfStock = isSimpleProductOutOfStock(product);
+	const colorsInStock = hasColors ? countColorsInStock(product) : 0;
+	const maxQty = getAvailableSimpleStock(product);
 	const bullets =
 		product.descriptionPoints?.length > 0
 			? product.descriptionPoints
@@ -64,7 +74,17 @@ export default function ProductPage() {
 
 					<div className="product-meta-lines">
 						{product.sizeMl && <p>Size: {product.sizeMl} ml</p>}
-						<p>In stock: {product.stock}</p>
+						{hasColors ? (
+							colorsInStock > 0 ? (
+								<p>In stock</p>
+							) : (
+								<p className="product-out-of-stock">Out of stock</p>
+							)
+						) : outOfStock ? (
+							<p className="product-out-of-stock">Out of stock</p>
+						) : (
+							<p>In stock</p>
+						)}
 					</div>
 
 					{!hasColors && (
@@ -72,19 +92,29 @@ export default function ProductPage() {
 							<input
 								type="number"
 								min={1}
-								max={product.stock}
+								max={maxQty}
 								value={qty}
+								disabled={outOfStock}
 								onChange={(e) => setQty(Number(e.target.value))}
 							/>
 							<button
 								type="button"
 								className="normal"
-								onClick={() => addItem(product, qty)}
+								disabled={outOfStock}
+								onClick={() => {
+									if (qty > maxQty) {
+										setCartMsg("Not enough stock available.");
+										return;
+									}
+									setCartMsg("");
+									addItem(product, qty);
+								}}
 							>
-								Add to cart
+								{outOfStock ? "Out of stock" : "Add to cart"}
 							</button>
 						</div>
 					)}
+					{cartMsg && <p className="form-error">{cartMsg}</p>}
 
 					{hasColors && (
 						<p className="product-color-hint">

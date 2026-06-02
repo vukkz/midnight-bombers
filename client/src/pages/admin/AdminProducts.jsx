@@ -57,7 +57,7 @@ export default function AdminProducts() {
 			) : (
 				<div className="admin-panel">
 					<div className="admin-table-wrap">
-						<table className="admin-table">
+						<table className="admin-table admin-table--stack">
 							<thead>
 								<tr>
 									<th>Image</th>
@@ -73,16 +73,16 @@ export default function AdminProducts() {
 							<tbody>
 								{products.map((p) => (
 									<tr key={p._id}>
-										<td>
+										<td data-label="Image">
 											<img src={p.image} alt="" className="thumb" />
 										</td>
-										<td>{p.name}</td>
-										<td>{p.category}</td>
-										<td>{p.brand || "—"}</td>
-										<td>{p.price} RSD</td>
-										<td>{p.stock}</td>
-										<td>{p.featured ? "Yes" : "No"}</td>
-										<td>
+										<td data-label="Name">{p.name}</td>
+										<td data-label="Category">{p.category}</td>
+										<td data-label="Brand">{p.brand || "—"}</td>
+										<td data-label="Price">{p.price} RSD</td>
+										<td data-label="Stock">{p.stock}</td>
+										<td data-label="Featured">{p.featured ? "Yes" : "No"}</td>
+										<td data-label="Actions">
 											<button
 												type="button"
 												className="admin-btn sm"
