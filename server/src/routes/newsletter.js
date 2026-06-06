@@ -1,8 +1,8 @@
 import express from "express";
-import nodemailer from "nodemailer";
 import crypto from "crypto";
 import { Newsletter } from "../models/Newsletter.js";
 import { emailTemplates } from "../utils/emailTemplates.js";
+import { sendMail } from "../utils/mailer.js";
 
 const router = express.Router();
 
@@ -43,23 +43,17 @@ router.post("/subscribe", async (req, res) => {
 			});
 		}
 
-		// Create transporter inside the handler
-		const transporter = nodemailer.createTransport({
-			service: "gmail",
-			auth: {
-				user: process.env.EMAIL_USER,
-				pass: process.env.EMAIL_PASSWORD,
-			},
-		});
-
-		// Send welcome email
 		const template = emailTemplates.welcome;
-		await transporter.sendMail({
-			from: `"Midnight Bombers" <${process.env.EMAIL_USER}>`,
-			to: email,
-			subject: template.subject,
-			html: template.getHtml(email),
-		});
+		try {
+			await sendMail({
+				from: `"Midnight Bombers" <${process.env.EMAIL_USER}>`,
+				to: email,
+				subject: template.subject,
+				html: template.getHtml(email),
+			});
+		} catch (err) {
+			console.warn("[newsletter] welcome email failed:", err.message);
+		}
 
 		res.status(200).json({
 			success: true,

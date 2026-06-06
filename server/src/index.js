@@ -16,6 +16,7 @@ import adminRoutes from "./routes/admin.js";
 import contactRoutes from "./routes/contact.js";
 import newsletterRoutes from "./routes/newsletter.js";
 import checkoutRoutes, { webhookHandler } from "./routes/checkout.js";
+import { verifyMailer } from "./utils/mailer.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -135,3 +136,7 @@ connectDB()
 		console.error("MongoDB connection failed:", err.message);
 		console.error("Set MONGODB_URI in Railway Variables and redeploy.");
 	});
+
+verifyMailer().catch((err) => {
+	console.error("[mailer] verify threw:", err.message);
+});

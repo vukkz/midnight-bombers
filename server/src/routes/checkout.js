@@ -1,9 +1,11 @@
 import { Router } from "express";
 import { Order } from "../models/Order.js";
 import { Product } from "../models/Product.js";
+import { User } from "../models/User.js";
 import { protect } from "../middleware/auth.js";
 import { deductLineStock, validateLineStock } from "../utils/stock.js";
 import { getStripe } from "../utils/stripe.js";
+import { sendMail } from "../utils/mailer.js";
 
 const router = Router();
 
@@ -144,6 +146,7 @@ router.post("/session", protect, async (req, res, next) => {
 			mode: "payment",
 			line_items: lineItems,
 			return_url: returnUrl,
+			customer_email: req.user.email || undefined,
 			metadata: {
 				orderId: order._id.toString(),
 				userId: req.user._id.toString(),
@@ -188,6 +191,127 @@ router.get("/session-status", protect, async (req, res, next) => {
 	}
 });
 
+function formatRsd(amount) {
+	return `${Number(amount).toLocaleString("sr-RS")} RSD`;
+}
+
+function renderOrderItemsHtml(order) {
+	return order.items
+		.map(
+			(it) => `
+				<tr>
+					<td style="padding:8px 12px;border-bottom:1px solid #eee;">${it.name}</td>
+					<td style="padding:8px 12px;border-bottom:1px solid #eee;text-align:center;">${it.quantity}</td>
+					<td style="padding:8px 12px;border-bottom:1px solid #eee;text-align:right;">${formatRsd(it.price * it.quantity)}</td>
+				</tr>
+			`,
+		)
+		.join("");
+}
+
+function renderShippingHtml(addr) {
+	return `
+		${addr.fullName}<br>
+		${addr.street}<br>
+		${addr.postalCode} ${addr.city}<br>
+		${addr.country || "Serbia"}<br>
+		${addr.phone}
+	`;
+}
+
+async function sendOrderEmails(order, customerEmail) {
+	const orderRef = String(order._id).slice(-8).toUpperCase();
+	const itemsHtml = renderOrderItemsHtml(order);
+	const shippingHtml = renderShippingHtml(order.shippingAddress);
+
+	const customerHtml = `
+		<div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;color:#222;">
+			<h2 style="color:#000;">Thanks for your order!</h2>
+			<p>We've received your payment and we're getting your order ready to ship.</p>
+			<p><strong>Order reference:</strong> ${orderRef}</p>
+			<table style="width:100%;border-collapse:collapse;margin-top:16px;">
+				<thead>
+					<tr>
+						<th style="text-align:left;padding:8px 12px;border-bottom:2px solid #000;">Item</th>
+						<th style="text-align:center;padding:8px 12px;border-bottom:2px solid #000;">Qty</th>
+						<th style="text-align:right;padding:8px 12px;border-bottom:2px solid #000;">Subtotal</th>
+					</tr>
+				</thead>
+				<tbody>${itemsHtml}</tbody>
+				<tfoot>
+					<tr>
+						<td colspan="2" style="padding:12px;text-align:right;font-weight:bold;">Total</td>
+						<td style="padding:12px;text-align:right;font-weight:bold;">${formatRsd(order.total)}</td>
+					</tr>
+				</tfoot>
+			</table>
+			<h3 style="margin-top:24px;">Shipping to</h3>
+			<p>${shippingHtml}</p>
+			<hr style="border:none;border-top:1px solid #eee;margin:24px 0;">
+			<p style="color:#666;font-size:13px;">Questions? Just reply to this email.</p>
+			<p>— Midnight Bombers</p>
+		</div>
+	`;
+
+	const ownerHtml = `
+		<div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;color:#222;">
+			<h2>New paid order ${orderRef}</h2>
+			<p><strong>Customer:</strong> ${order.shippingAddress.fullName} &lt;${customerEmail || "?"}&gt;</p>
+			<p><strong>Phone:</strong> ${order.shippingAddress.phone}</p>
+			<table style="width:100%;border-collapse:collapse;margin-top:16px;">
+				<thead>
+					<tr>
+						<th style="text-align:left;padding:8px 12px;border-bottom:2px solid #000;">Item</th>
+						<th style="text-align:center;padding:8px 12px;border-bottom:2px solid #000;">Qty</th>
+						<th style="text-align:right;padding:8px 12px;border-bottom:2px solid #000;">Subtotal</th>
+					</tr>
+				</thead>
+				<tbody>${itemsHtml}</tbody>
+				<tfoot>
+					<tr>
+						<td colspan="2" style="padding:12px;text-align:right;font-weight:bold;">Total</td>
+						<td style="padding:12px;text-align:right;font-weight:bold;">${formatRsd(order.total)}</td>
+					</tr>
+				</tfoot>
+			</table>
+			<h3 style="margin-top:24px;">Ship to</h3>
+			<p>${shippingHtml}</p>
+		</div>
+	`;
+
+	const fromName = process.env.EMAIL_USER
+		? `"Midnight Bombers" <${process.env.EMAIL_USER}>`
+		: undefined;
+	const ownerEmail = process.env.OWNER_EMAIL || process.env.EMAIL_USER;
+
+	if (customerEmail && fromName) {
+		try {
+			await sendMail({
+				from: fromName,
+				to: customerEmail,
+				subject: `Order confirmation #${orderRef} — Midnight Bombers`,
+				html: customerHtml,
+			});
+		} catch (err) {
+			console.error("[stripe] customer confirmation email failed:", err.message);
+		}
+	}
+
+	if (ownerEmail && fromName) {
+		try {
+			await sendMail({
+				from: fromName,
+				to: ownerEmail,
+				replyTo: customerEmail,
+				subject: `New order ${orderRef} — ${formatRsd(order.total)}`,
+				html: ownerHtml,
+			});
+		} catch (err) {
+			console.error("[stripe] owner notification email failed:", err.message);
+		}
+	}
+}
+
 async function fulfillOrder(session) {
 	const orderId = session.metadata?.orderId;
 	if (!orderId) {
@@ -228,6 +352,22 @@ async function fulfillOrder(session) {
 		order.stripePaymentIntentId = session.payment_intent;
 	}
 	await order.save();
+
+	let customerEmail = session.customer_details?.email || session.customer_email || null;
+	if (!customerEmail) {
+		try {
+			const user = await User.findById(order.user).select("email");
+			customerEmail = user?.email || null;
+		} catch (err) {
+			console.warn("[stripe] could not load user email:", err.message);
+		}
+	}
+
+	try {
+		await sendOrderEmails(order, customerEmail);
+	} catch (err) {
+		console.error("[stripe] sendOrderEmails failed:", err.message);
+	}
 }
 
 async function cancelOrder(session) {
