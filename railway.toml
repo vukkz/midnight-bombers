@@ -1,0 +1,14 @@
+[build]
+builder = "NIXPACKS"
+buildCommand = "npm install && npm run build"
+
+[deploy]
+startCommand = "npm start"
+healthcheckPath = "/api/health"
+healthcheckTimeout = 120
+restartPolicyType = "ON_FAILURE"
+
+# Railway Variables (required):
+#   MONGODB_URI = mongodb+srv://USER:PASS@cluster....mongodb.net/midnight-bombers?retryWrites=true&w=majority
+#   JWT_SECRET  = long random string
+# Do NOT set VITE_API_URL — frontend and API share the same Railway URL.

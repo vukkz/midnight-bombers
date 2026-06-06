@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { api } from "../api/client.js";
 import Newsletter from "../components/Newsletter.jsx";
 
 export default function Contact() {
@@ -25,18 +26,7 @@ export default function Contact() {
 		setMessage("");
 
 		try {
-			const response = await fetch(
-				`${import.meta.env.VITE_API_BASE_URL || "http://localhost:5000"}/api/contact/send`,
-				{
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json",
-					},
-					body: JSON.stringify(formData),
-				},
-			);
-
-			const data = await response.json();
+			const data = await api.post("/api/contact/send", formData);
 
 			if (data.success) {
 				setMessage("✓ Message sent successfully! We'll get back to you soon.");

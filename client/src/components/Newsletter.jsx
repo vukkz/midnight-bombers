@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { api } from "../api/client.js";
 
 export default function Newsletter() {
 	const [email, setEmail] = useState("");
@@ -11,18 +12,7 @@ export default function Newsletter() {
 		setMessage("");
 
 		try {
-			const response = await fetch(
-				`${import.meta.env.VITE_API_BASE_URL || "http://localhost:5000"}/api/newsletter/subscribe`,
-				{
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json",
-					},
-					body: JSON.stringify({ email }),
-				},
-			);
-
-			const data = await response.json();
+			const data = await api.post("/api/newsletter/subscribe", { email });
 
 			if (data.success) {
 				setMessage("✓ " + data.message);

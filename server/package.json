@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "node --watch src/index.js",
     "start": "node src/index.js",
-    "seed": "node src/seed/run.js"
+    "seed": "node src/seed/run.js",
+    "migrate:atlas": "node src/scripts/migrate-to-atlas.js"
   },
   "dependencies": {
     "@sendgrid/mail": "^8.1.6",

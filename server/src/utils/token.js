@@ -9,7 +9,9 @@ export function signToken(userId) {
 export function setAuthCookie(res, token) {
 	res.cookie("token", token, {
 		httpOnly: true,
-		secure: process.env.NODE_ENV === "production",
+		secure:
+			process.env.NODE_ENV === "production" ||
+			Boolean(process.env.RAILWAY_ENVIRONMENT),
 		sameSite: "lax",
 		maxAge: 7 * 24 * 60 * 60 * 1000,
 	});

@@ -10,6 +10,7 @@ lerna-debug.log*
 node_modules
 dist
 server/uploads
+server/migration-export
 server/.env
 .env
 dist-ssr
