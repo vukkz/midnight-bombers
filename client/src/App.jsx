@@ -6,6 +6,8 @@ import Home from "./pages/Home.jsx";
 import Shop from "./pages/Shop.jsx";
 import ProductPage from "./pages/ProductPage.jsx";
 import Cart from "./pages/Cart.jsx";
+import Checkout from "./pages/Checkout.jsx";
+import CheckoutComplete from "./pages/CheckoutComplete.jsx";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import Account from "./pages/Account.jsx";
@@ -25,6 +27,8 @@ export default function App() {
 				<Route path="shop" element={<Shop />} />
 				<Route path="product/:id" element={<ProductPage />} />
 				<Route path="cart" element={<Cart />} />
+				<Route path="checkout" element={<Checkout />} />
+				<Route path="checkout/complete" element={<CheckoutComplete />} />
 				<Route path="login" element={<Login />} />
 				<Route path="register" element={<Register />} />
 				<Route path="account" element={<Account />} />

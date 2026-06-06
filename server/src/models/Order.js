@@ -36,6 +36,9 @@ const orderSchema = new mongoose.Schema(
 			postalCode: { type: String, required: true },
 			country: { type: String, default: "Serbia" },
 		},
+		stripeSessionId: { type: String, index: true },
+		stripePaymentIntentId: { type: String },
+		paidAt: { type: Date },
 	},
 	{ timestamps: true },
 );

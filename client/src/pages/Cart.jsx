@@ -5,7 +5,7 @@ import { useAuth } from "../context/AuthContext.jsx";
 import { useCart } from "../context/CartContext.jsx";
 
 export default function Cart() {
-	const { items, updateQuantity, removeItem, total, clearCart } = useCart();
+	const { items, updateQuantity, removeItem, total } = useCart();
 	const { user } = useAuth();
 	const navigate = useNavigate();
 	const [submitting, setSubmitting] = useState(false);
@@ -29,7 +29,7 @@ export default function Cart() {
 		setSubmitting(true);
 		setMessage("");
 		try {
-			await api.post("/api/orders", {
+			const { clientSecret, orderId } = await api.post("/api/checkout/session", {
 				items: items.map((i) => ({
 					productId: i.productId,
 					quantity: i.quantity,
@@ -38,9 +38,12 @@ export default function Cart() {
 				})),
 				shippingAddress: address,
 			});
-			clearCart();
-			setMessage("Order placed successfully!");
-			navigate("/account");
+
+			if (!clientSecret) {
+				throw new Error("Could not start payment session");
+			}
+
+			navigate("/checkout", { state: { clientSecret, orderId } });
 		} catch (err) {
 			setMessage(err.message);
 		} finally {
@@ -190,8 +193,8 @@ export default function Cart() {
 							<button type="submit" className="normal cart-checkout-btn" disabled={submitting}>
 								{user
 									? submitting
-										? "Placing order..."
-										: "Place order"
+										? "Starting payment..."
+										: "Continue to payment"
 									: "Sign in to checkout"}
 							</button>
 							{!user && (

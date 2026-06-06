@@ -15,6 +15,7 @@ import orderRoutes from "./routes/orders.js";
 import adminRoutes from "./routes/admin.js";
 import contactRoutes from "./routes/contact.js";
 import newsletterRoutes from "./routes/newsletter.js";
+import checkoutRoutes, { webhookHandler } from "./routes/checkout.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -65,6 +66,13 @@ app.use(
 		credentials: true,
 	}),
 );
+
+app.post(
+	"/api/checkout/webhook",
+	express.raw({ type: "application/json" }),
+	webhookHandler,
+);
+
 app.use(express.json());
 app.use(cookieParser());
 app.use("/uploads", express.static(join(__dirname, "../uploads")));
@@ -99,6 +107,7 @@ app.use("/api/orders", orderRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/contact", contactRoutes);
 app.use("/api/newsletter", newsletterRoutes);
+app.use("/api/checkout", checkoutRoutes);
 
 if (serveClient) {
 	app.use(express.static(clientDist));
