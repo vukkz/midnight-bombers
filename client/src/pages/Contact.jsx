@@ -41,7 +41,7 @@ export default function Contact() {
 			}
 		} catch (error) {
 			console.error("Error sending message:", error);
-			setMessage("✗ An error occurred. Please try again later.");
+			setMessage(`✗ ${error.message || "An error occurred. Please try again later."}`);
 		} finally {
 			setLoading(false);
 		}

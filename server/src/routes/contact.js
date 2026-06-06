@@ -75,9 +75,16 @@ router.post("/send", async (req, res) => {
 		});
 	} catch (error) {
 		console.error("[contact] send failed:", error);
+		let message = error.message || "Failed to send email";
+		if (message.includes("only send testing emails")) {
+			message =
+				"Resend testing mode: onboarding@resend.dev can only send to your Resend signup email. " +
+				"Set OWNER_EMAIL to that same address for testing, or verify midnightbombers.com in Resend " +
+				"and set RESEND_FROM to e.g. Midnight Bombers <noreply@midnightbombers.com>.";
+		}
 		res.status(500).json({
 			success: false,
-			message: error.message || "Failed to send email",
+			message,
 			code: error.code,
 		});
 	}

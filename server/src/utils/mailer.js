@@ -111,9 +111,16 @@ export async function verifyMailer() {
 
 	if (activeBackend === "resend") {
 		lastVerifyError = null;
-		console.log(
-			`[mailer] Using Resend API (from: ${getDefaultFrom()}) — works on Railway Hobby`,
-		);
+		const from = getDefaultFrom();
+		console.log(`[mailer] Using Resend API (from: ${from})`);
+		if (from.includes("onboarding@resend.dev")) {
+			console.warn(
+				"[mailer] TESTING MODE: onboarding@resend.dev only delivers to your Resend account email.",
+			);
+			console.warn(
+				"[mailer] Verify midnightbombers.com in Resend, then set RESEND_FROM to noreply@midnightbombers.com",
+			);
+		}
 		return true;
 	}
 
