@@ -38,6 +38,17 @@ function buildLineName(product, item) {
 		: product.name;
 }
 
+function toAbsoluteHttpsUrl(maybeUrl, baseUrl) {
+	if (!maybeUrl || typeof maybeUrl !== "string") return null;
+	try {
+		const resolved = new URL(maybeUrl, baseUrl);
+		if (resolved.protocol !== "https:") return null;
+		return resolved.toString();
+	} catch {
+		return null;
+	}
+}
+
 router.post("/session", protect, async (req, res, next) => {
 	try {
 		const { items, shippingAddress } = req.body;
@@ -57,6 +68,8 @@ router.post("/session", protect, async (req, res, next) => {
 				.status(400)
 				.json({ message: "Complete shipping address is required" });
 		}
+
+		const clientUrl = resolveClientUrl(req);
 
 		const orderItems = [];
 		const lineItems = [];
@@ -92,13 +105,16 @@ router.post("/session", protect, async (req, res, next) => {
 				colorName: item.colorName,
 			});
 
+			const absoluteImage = toAbsoluteHttpsUrl(product.image, clientUrl);
+			const productData = { name: lineName };
+			if (absoluteImage) {
+				productData.images = [absoluteImage];
+			}
+
 			lineItems.push({
 				price_data: {
 					currency: "rsd",
-					product_data: {
-						name: lineName,
-						images: product.image ? [product.image] : undefined,
-					},
+					product_data: productData,
 					unit_amount: Math.round(product.price * 100),
 				},
 				quantity: item.quantity,
@@ -114,12 +130,20 @@ router.post("/session", protect, async (req, res, next) => {
 		});
 
 		const stripe = getStripe();
-		const clientUrl = resolveClientUrl(req);
+		const returnUrl = `${clientUrl.replace(/\/$/, "")}/checkout/complete?session_id={CHECKOUT_SESSION_ID}`;
+		try {
+			new URL(returnUrl.replace("{CHECKOUT_SESSION_ID}", "test"));
+		} catch {
+			return res.status(500).json({
+				message: `Server misconfiguration: invalid return URL "${returnUrl}". Set CLIENT_URL in Railway Variables.`,
+			});
+		}
+
 		const session = await stripe.checkout.sessions.create({
 			ui_mode: "embedded",
 			mode: "payment",
 			line_items: lineItems,
-			return_url: `${clientUrl}/checkout/complete?session_id={CHECKOUT_SESSION_ID}`,
+			return_url: returnUrl,
 			metadata: {
 				orderId: order._id.toString(),
 				userId: req.user._id.toString(),
