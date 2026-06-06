@@ -2,7 +2,7 @@ import express from "express";
 import crypto from "crypto";
 import { Newsletter } from "../models/Newsletter.js";
 import { emailTemplates } from "../utils/emailTemplates.js";
-import { sendMail } from "../utils/mailer.js";
+import { getDefaultFrom, sendMail } from "../utils/mailer.js";
 
 const router = express.Router();
 
@@ -46,7 +46,7 @@ router.post("/subscribe", async (req, res) => {
 		const template = emailTemplates.welcome;
 		try {
 			await sendMail({
-				from: `"Midnight Bombers" <${process.env.EMAIL_USER}>`,
+				from: getDefaultFrom(),
 				to: email,
 				subject: template.subject,
 				html: template.getHtml(email),

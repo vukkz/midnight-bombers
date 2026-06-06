@@ -5,7 +5,7 @@ import { User } from "../models/User.js";
 import { protect } from "../middleware/auth.js";
 import { deductLineStock, validateLineStock } from "../utils/stock.js";
 import { getStripe } from "../utils/stripe.js";
-import { sendMail } from "../utils/mailer.js";
+import { getDefaultFrom, sendMail } from "../utils/mailer.js";
 
 const router = Router();
 
@@ -279,15 +279,13 @@ async function sendOrderEmails(order, customerEmail) {
 		</div>
 	`;
 
-	const fromName = process.env.EMAIL_USER
-		? `"Midnight Bombers" <${process.env.EMAIL_USER}>`
-		: undefined;
+	const from = getDefaultFrom();
 	const ownerEmail = process.env.OWNER_EMAIL || process.env.EMAIL_USER;
 
-	if (customerEmail && fromName) {
+	if (customerEmail) {
 		try {
 			await sendMail({
-				from: fromName,
+				from,
 				to: customerEmail,
 				subject: `Order confirmation #${orderRef} — Midnight Bombers`,
 				html: customerHtml,
@@ -297,10 +295,10 @@ async function sendOrderEmails(order, customerEmail) {
 		}
 	}
 
-	if (ownerEmail && fromName) {
+	if (ownerEmail) {
 		try {
 			await sendMail({
-				from: fromName,
+				from,
 				to: ownerEmail,
 				replyTo: customerEmail,
 				subject: `New order ${orderRef} — ${formatRsd(order.total)}`,

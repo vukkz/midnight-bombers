@@ -1,5 +1,5 @@
 import express from "express";
-import { sendMail } from "../utils/mailer.js";
+import { getActiveBackend, getDefaultFrom, sendMail } from "../utils/mailer.js";
 
 const router = express.Router();
 
@@ -14,8 +14,8 @@ router.post("/send", async (req, res) => {
 			});
 		}
 
-		if (!process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) {
-			console.error("[contact] EMAIL_USER / EMAIL_PASSWORD not set");
+		if (!getActiveBackend()) {
+			console.error("[contact] no email backend configured");
 			return res.status(500).json({
 				success: false,
 				message: "Email service is not configured on the server",
@@ -23,12 +23,20 @@ router.post("/send", async (req, res) => {
 		}
 
 		const ownerEmail = process.env.OWNER_EMAIL || process.env.EMAIL_USER;
+		if (!ownerEmail) {
+			return res.status(500).json({
+				success: false,
+				message: "OWNER_EMAIL is not configured on the server",
+			});
+		}
+
+		const from = getDefaultFrom();
 
 		await sendMail({
-			from: `"${name}" <${process.env.EMAIL_USER}>`,
+			from,
 			to: ownerEmail,
 			replyTo: email,
-			subject: `New Contact: ${subject || "No Subject"}`,
+			subject: `New Contact from ${name}: ${subject || "No Subject"}`,
 			html: `
 				<h2>New Contact Form Message</h2>
 				<p><strong>From:</strong> ${name}</p>
@@ -44,7 +52,7 @@ router.post("/send", async (req, res) => {
 
 		try {
 			await sendMail({
-				from: `"Midnight Bombers" <${process.env.EMAIL_USER}>`,
+				from,
 				to: email,
 				subject: "We received your message - Midnight Bombers",
 				html: `
