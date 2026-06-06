@@ -1,3 +1,6 @@
+# Enable in Railway: Project → your service → Settings → enable "Config as Code"
+# Set Source branch to: master
+
 [build]
 builder = "NIXPACKS"
 buildCommand = "npm install && npm run build"
@@ -5,10 +8,11 @@ buildCommand = "npm install && npm run build"
 [deploy]
 startCommand = "npm start"
 healthcheckPath = "/api/health"
-healthcheckTimeout = 120
+healthcheckTimeout = 300
 restartPolicyType = "ON_FAILURE"
+numReplicas = 1
 
-# Railway Variables (required):
+# Required Railway Variables:
 #   MONGODB_URI = mongodb+srv://USER:PASS@cluster....mongodb.net/midnight-bombers?retryWrites=true&w=majority
 #   JWT_SECRET  = long random string
-# Do NOT set VITE_API_URL — frontend and API share the same Railway URL.
+# Do NOT set VITE_API_URL or CLIENT_URL=localhost

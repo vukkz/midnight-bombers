@@ -23,10 +23,15 @@ dotenv.config({ path: join(__dirname, "../.env") });
 const isProd =
 	process.env.NODE_ENV === "production" || Boolean(process.env.RAILWAY_ENVIRONMENT);
 
+function withHttps(url) {
+	if (!url) return url;
+	return /^https?:\/\//i.test(url) ? url : `https://${url}`;
+}
+
 function resolveClientUrl() {
 	const configured = process.env.CLIENT_URL?.trim();
 	if (configured && !configured.includes("localhost")) {
-		return configured;
+		return withHttps(configured);
 	}
 	if (process.env.RAILWAY_PUBLIC_DOMAIN) {
 		return `https://${process.env.RAILWAY_PUBLIC_DOMAIN}`;
@@ -64,6 +69,11 @@ app.use(express.json());
 app.use(cookieParser());
 app.use("/uploads", express.static(join(__dirname, "../uploads")));
 
+function mongoState() {
+	const states = ["disconnected", "connected", "connecting", "disconnecting"];
+	return states[mongoose.connection.readyState] || "unknown";
+}
+
 app.get("/api/health", async (_req, res) => {
 	let productCount = null;
 	try {
@@ -73,10 +83,13 @@ app.get("/api/health", async (_req, res) => {
 	} catch {
 		productCount = -1;
 	}
+
 	res.json({
-		status: "ok",
+		status: mongoose.connection.readyState === 1 ? "ok" : "degraded",
+		mongo: mongoState(),
 		db: mongoose.connection.name || null,
 		products: productCount,
+		version: process.env.RAILWAY_GIT_COMMIT_SHA?.slice(0, 7) || "local",
 	});
 });
 
@@ -99,8 +112,6 @@ if (serveClient) {
 
 app.use(errorHandler);
 
-await connectDB();
-
 app.listen(port, "0.0.0.0", () => {
 	console.log(`Server running on port ${port} (${isProd ? "production" : "development"})`);
 	console.log(`Client URL: ${clientUrl}`);
@@ -109,3 +120,9 @@ app.listen(port, "0.0.0.0", () => {
 	}
 });
 
+connectDB()
+	.then(() => console.log("MongoDB ready"))
+	.catch((err) => {
+		console.error("MongoDB connection failed:", err.message);
+		console.error("Set MONGODB_URI in Railway Variables and redeploy.");
+	});
