@@ -181,6 +181,108 @@
 	letter-spacing: 0.02em;
 }
 
+.admin-page-desc {
+	color: #666;
+	font-size: 14px;
+	margin: -12px 0 24px;
+	line-height: 1.5;
+}
+
+.admin-gallery-add {
+	margin-bottom: 24px;
+	padding: 24px;
+}
+
+.admin-gallery-add h2 {
+	font-size: 18px;
+	margin-bottom: 16px;
+}
+
+.admin-gallery-form {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 16px;
+	align-items: end;
+}
+
+.admin-gallery-form label {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	font-size: 13px;
+	font-weight: 600;
+}
+
+.admin-gallery-form input[type="text"],
+.admin-gallery-form input[type="number"],
+.admin-gallery-form input[type="file"] {
+	padding: 10px 12px;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	font-size: 14px;
+}
+
+.admin-gallery-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+	gap: 20px;
+}
+
+.admin-gallery-card {
+	background: #fff;
+	border: 1.5px solid #ece6da;
+	border-radius: 12px;
+	overflow: hidden;
+}
+
+.admin-gallery-thumb {
+	width: 100%;
+	aspect-ratio: 4 / 3;
+	object-fit: cover;
+	display: block;
+}
+
+.admin-gallery-card-body {
+	padding: 16px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.admin-gallery-card-body label {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	font-size: 12px;
+	font-weight: 600;
+	color: #555;
+}
+
+.admin-gallery-card-body input[type="text"],
+.admin-gallery-card-body input[type="number"] {
+	padding: 8px 10px;
+	border: 1px solid #ddd;
+	border-radius: 6px;
+	font-size: 13px;
+}
+
+.admin-gallery-check {
+	flex-direction: row !important;
+	align-items: center;
+	gap: 8px !important;
+}
+
+.admin-gallery-path {
+	font-size: 11px;
+	color: #888;
+	word-break: break-all;
+	margin: 0;
+}
+
+.admin-gallery-path code {
+	font-size: 11px;
+}
+
 .admin-metrics {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));

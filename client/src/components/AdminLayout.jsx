@@ -7,6 +7,7 @@ const NAV = [
 	{ to: "/admin/products", label: "Products", icon: "fa-box" },
 	{ to: "/admin/inventory", label: "Inventory", icon: "fa-warehouse" },
 	{ to: "/admin/orders", label: "Orders", icon: "fa-receipt" },
+	{ to: "/admin/gallery", label: "Gallery", icon: "fa-images" },
 	{ to: "/admin/users", label: "Users", icon: "fa-users" },
 ];
 

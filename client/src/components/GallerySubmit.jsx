@@ -4,7 +4,7 @@ import { api } from "../api/client.js";
 const INSTAGRAM_URL =
 	import.meta.env.VITE_INSTAGRAM_URL || "https://www.instagram.com/midnightbombers/";
 
-export default function GallerySubmit() {
+export default function GallerySubmit({ sectionRef, onClose }) {
 	const [form, setForm] = useState({
 		name: "",
 		instagramHandle: "",
@@ -48,6 +48,7 @@ export default function GallerySubmit() {
 			if (preview) URL.revokeObjectURL(preview);
 			setPreview("");
 			e.target.reset();
+			setTimeout(() => onClose?.(), 2500);
 		} catch (err) {
 			setMessage(`✗ ${err.message}`);
 		} finally {
@@ -56,10 +57,19 @@ export default function GallerySubmit() {
 	};
 
 	return (
-		<section id="submit-photo" className="gallery-submit-section section-p1 section-concrete">
-			<div className="section-head reveal">
-				<h2>Get featured</h2>
-				<p>Share your wall with the Midnight Bombers community</p>
+		<section
+			id="submit-photo"
+			ref={sectionRef}
+			className="gallery-submit-section section-p1 section-concrete"
+		>
+			<div className="gallery-submit-section-head">
+				<div className="section-head">
+					<h2>Get featured</h2>
+					<p>Share your wall with the Midnight Bombers community</p>
+				</div>
+				<button type="button" className="gallery-submit-close" onClick={onClose} aria-label="Close">
+					<i className="fa-solid fa-xmark" aria-hidden />
+				</button>
 			</div>
 
 			<div className="gallery-submit-options reveal reveal-d1">
@@ -72,9 +82,7 @@ export default function GallerySubmit() {
 					<i className="fa-brands fa-instagram" aria-hidden /> Share on Instagram
 				</a>
 				<span className="gallery-submit-divider">or</span>
-				<a className="gallery-submit gallery-submit--scroll" href="#gallery-submit-form">
-					<i className="fa-solid fa-camera" aria-hidden /> Submit via form
-				</a>
+				<span className="gallery-submit-hint">Fill in the form below</span>
 			</div>
 
 			<div className="gallery-submit-steps reveal reveal-d2">
@@ -171,8 +179,8 @@ export default function GallerySubmit() {
 				)}
 
 				<p className="gallery-form-note">
-					By submitting, you confirm this is your work and allow Midnight Bombers to
-					share it on the website and social media if featured.
+					Click anywhere outside this section, press Escape, or use Close form to hide
+					this panel.
 				</p>
 			</form>
 		</section>

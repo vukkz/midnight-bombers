@@ -25,11 +25,11 @@ async function request(path, options = {}) {
 	return data;
 }
 
-async function uploadRequest(path, formData) {
+async function uploadRequest(path, formData, method = "POST") {
 	let res;
 	try {
 		res = await fetch(`${API_BASE}${path}`, {
-			method: "POST",
+			method,
 			credentials: "include",
 			body: formData,
 		});
@@ -53,4 +53,5 @@ export const api = {
 	patch: (path, body) => request(path, { method: "PATCH", body: JSON.stringify(body) }),
 	delete: (path) => request(path, { method: "DELETE" }),
 	upload: (path, formData) => uploadRequest(path, formData),
+	uploadPatch: (path, formData) => uploadRequest(path, formData, "PATCH"),
 };

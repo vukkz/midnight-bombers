@@ -133,7 +133,11 @@ app.listen(port, "0.0.0.0", () => {
 });
 
 connectDB()
-	.then(() => console.log("MongoDB ready"))
+	.then(async () => {
+		console.log("MongoDB ready");
+		const { ensureGallerySeeded } = await import("./seed/gallery.js");
+		await ensureGallerySeeded();
+	})
 	.catch((err) => {
 		console.error("MongoDB connection failed:", err.message);
 		console.error("Set MONGODB_URI in Railway Variables and redeploy.");

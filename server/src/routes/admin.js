@@ -8,6 +8,8 @@ import { Order } from "../models/Order.js";
 import { User } from "../models/User.js";
 import { protect, requireAdmin } from "../middleware/auth.js";
 import { findColorVariant, hasColorVariants, syncProductStockFromColors } from "../utils/stock.js";
+import { GalleryPhoto } from "../models/GalleryPhoto.js";
+import { galleryUpload } from "../utils/galleryUpload.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const uploadsDir = join(__dirname, "../../uploads/products");
@@ -246,6 +248,99 @@ router.post("/upload", (req, res, next) => {
 		}
 		res.json({ url: `/uploads/products/${req.file.filename}` });
 	});
+});
+
+router.get("/gallery", async (_req, res, next) => {
+	try {
+		const photos = await GalleryPhoto.find().sort({ sortOrder: 1, createdAt: -1 });
+		res.json({ photos });
+	} catch (err) {
+		next(err);
+	}
+});
+
+router.post("/gallery", (req, res, next) => {
+	galleryUpload.single("image")(req, res, async (err) => {
+		if (err) {
+			return res.status(400).json({ message: err.message || "Upload failed" });
+		}
+
+		try {
+			const { artist, sortOrder, imageUrl } = req.body;
+			if (!artist?.trim()) {
+				return res.status(400).json({ message: "Artist / handle is required" });
+			}
+
+			let image = imageUrl?.trim();
+			if (req.file) {
+				image = `/uploads/gallery/${req.file.filename}`;
+			}
+			if (!image) {
+				return res.status(400).json({ message: "Image file or image URL is required" });
+			}
+
+			const photo = await GalleryPhoto.create({
+				image,
+				artist: artist.trim().startsWith("@") ? artist.trim() : `@${artist.trim()}`,
+				sortOrder: Number(sortOrder) || 0,
+				active: true,
+			});
+
+			res.status(201).json({ photo });
+		} catch (e) {
+			next(e);
+		}
+	});
+});
+
+router.patch("/gallery/:id", (req, res, next) => {
+	galleryUpload.single("image")(req, res, async (err) => {
+		if (err) {
+			return res.status(400).json({ message: err.message || "Upload failed" });
+		}
+
+		try {
+			const photo = await GalleryPhoto.findById(req.params.id);
+			if (!photo) {
+				return res.status(404).json({ message: "Photo not found" });
+			}
+
+			const { artist, sortOrder, active, imageUrl } = req.body;
+
+			if (artist?.trim()) {
+				const a = artist.trim();
+				photo.artist = a.startsWith("@") ? a : `@${a}`;
+			}
+			if (sortOrder !== undefined && sortOrder !== "") {
+				photo.sortOrder = Number(sortOrder) || 0;
+			}
+			if (active !== undefined) {
+				photo.active = active === true || active === "true";
+			}
+			if (req.file) {
+				photo.image = `/uploads/gallery/${req.file.filename}`;
+			} else if (imageUrl?.trim()) {
+				photo.image = imageUrl.trim();
+			}
+
+			await photo.save();
+			res.json({ photo });
+		} catch (e) {
+			next(e);
+		}
+	});
+});
+
+router.delete("/gallery/:id", async (req, res, next) => {
+	try {
+		const photo = await GalleryPhoto.findByIdAndDelete(req.params.id);
+		if (!photo) {
+			return res.status(404).json({ message: "Photo not found" });
+		}
+		res.json({ message: "Photo removed from gallery" });
+	} catch (err) {
+		next(err);
+	}
 });
 
 export default router;

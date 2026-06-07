@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { api } from "../api/client.js";
 import Newsletter from "../components/Newsletter.jsx";
@@ -8,15 +8,6 @@ import StarRating from "../components/StarRating.jsx";
 import BrandCarousel from "../components/BrandCarousel.jsx";
 import GallerySubmit from "../components/GallerySubmit.jsx";
 import { useReveal } from "../hooks/useReveal.js";
-
-const GALLERY = [
-	{ src: "/img/banners/IMG_3198.jpg", artist: "@nightcrawler" },
-	{ src: "/img/banners/IMG_3176.jpg", artist: "@bgd_writer" },
-	{ src: "/img/banners/IMG_3191.jpg", artist: "@kraljica" },
-	{ src: "/img/blog/IMG_2087.jpg", artist: "@toofly" },
-	{ src: "/img/banners/IMG_3182.jpg", artist: "@vandal021" },
-	{ src: "/img/blog/IMG_2556.jpg", artist: "@bombsquad" },
-];
 
 const REVIEWS = [
 	{
@@ -35,17 +26,23 @@ const REVIEWS = [
 
 export default function Home() {
 	const [featured, setFeatured] = useState([]);
+	const [gallery, setGallery] = useState([]);
 	const [error, setError] = useState("");
 	const [loading, setLoading] = useState(true);
+	const [showSubmitForm, setShowSubmitForm] = useState(false);
+	const submitSectionRef = useRef(null);
+	const submitToggleRef = useRef(null);
 
 	useEffect(() => {
 		async function load() {
 			setLoading(true);
 			try {
-				const featuredRes = await api.get(
-					"/api/products?featured=true&limit=4",
-				);
+				const [featuredRes, galleryRes] = await Promise.all([
+					api.get("/api/products?featured=true&limit=4"),
+					api.get("/api/gallery/photos"),
+				]);
 				setFeatured(featuredRes.products);
+				setGallery(galleryRes.photos);
 			} catch (err) {
 				setError(err.message);
 			} finally {
@@ -55,7 +52,39 @@ export default function Home() {
 		load();
 	}, []);
 
-	useReveal([loading, featured]);
+	useEffect(() => {
+		if (!showSubmitForm) return;
+
+		const onPointerDown = (e) => {
+			if (submitToggleRef.current?.contains(e.target)) return;
+			if (submitSectionRef.current?.contains(e.target)) return;
+			setShowSubmitForm(false);
+		};
+
+		const onKeyDown = (e) => {
+			if (e.key === "Escape") setShowSubmitForm(false);
+		};
+
+		document.addEventListener("mousedown", onPointerDown);
+		document.addEventListener("keydown", onKeyDown);
+		return () => {
+			document.removeEventListener("mousedown", onPointerDown);
+			document.removeEventListener("keydown", onKeyDown);
+		};
+	}, [showSubmitForm]);
+
+	const toggleSubmitForm = () => {
+		setShowSubmitForm((open) => {
+			if (!open) {
+				requestAnimationFrame(() => {
+					submitSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+				});
+			}
+			return !open;
+		});
+	};
+
+	useReveal([loading, featured, gallery, showSubmitForm]);
 
 	return (
 		<>
@@ -113,19 +142,32 @@ export default function Home() {
 					</p>
 				</div>
 				<div className="gallery-grid reveal reveal-d1">
-					{GALLERY.map((shot) => (
-						<figure key={shot.src} className="gallery-item">
-							<img src={shot.src} alt={`Graffiti by ${shot.artist}`} />
+					{gallery.map((shot) => (
+						<figure key={shot._id} className="gallery-item">
+							<img src={shot.image} alt={`Graffiti by ${shot.artist}`} />
 							<figcaption className="gallery-caption">{shot.artist}</figcaption>
 						</figure>
 					))}
 				</div>
-				<a className="gallery-submit reveal reveal-d2" href="#submit-photo">
-					<i className="fa-solid fa-camera" aria-hidden /> Submit your photo
-				</a>
+				<button
+					ref={submitToggleRef}
+					type="button"
+					className={`gallery-submit reveal reveal-d2${showSubmitForm ? " gallery-submit--active" : ""}`}
+					onClick={toggleSubmitForm}
+					aria-expanded={showSubmitForm}
+					aria-controls="submit-photo"
+				>
+					<i className={`fa-solid ${showSubmitForm ? "fa-xmark" : "fa-camera"}`} aria-hidden />
+					{showSubmitForm ? "Close form" : "Submit your photo"}
+				</button>
 			</section>
 
-			<GallerySubmit />
+			{showSubmitForm && (
+				<GallerySubmit
+					sectionRef={submitSectionRef}
+					onClose={() => setShowSubmitForm(false)}
+				/>
+			)}
 
 			<section id="community" className="community-strip">
 				<div className="community-inner reveal">

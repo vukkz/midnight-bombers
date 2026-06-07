@@ -1181,16 +1181,26 @@ button.normal:hover {
 	padding: 14px 34px;
 	border: 2px solid var(--pink);
 	border-radius: 999px;
+	background: transparent;
 	color: var(--pink);
 	font-weight: 700;
 	text-transform: uppercase;
 	letter-spacing: 0.06em;
 	text-decoration: none;
+	font-family: inherit;
+	font-size: inherit;
+	cursor: pointer;
 	transition:
 		background 0.25s ease,
 		color 0.25s ease,
 		box-shadow 0.25s ease,
 		transform 0.15s ease;
+}
+
+.gallery-submit--active {
+	background: var(--pink);
+	color: #0c0c0e;
+	box-shadow: var(--glow-pink);
 }
 
 .gallery-submit:hover {
@@ -1203,6 +1213,47 @@ button.normal:hover {
 .gallery-submit-section .neon-pink {
 	color: var(--pink);
 	font-weight: 700;
+}
+
+.gallery-submit-section-head {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 16px;
+	max-width: 900px;
+	margin: 0 auto 8px;
+}
+
+.gallery-submit-section-head .section-head {
+	margin-bottom: 0;
+}
+
+.gallery-submit-close {
+	flex-shrink: 0;
+	width: 40px;
+	height: 40px;
+	border: 1px solid #ddd;
+	border-radius: 50%;
+	background: #fff;
+	color: #333;
+	cursor: pointer;
+	font-size: 16px;
+	transition:
+		border-color 0.2s,
+		color 0.2s;
+}
+
+.gallery-submit-close:hover {
+	border-color: var(--pink);
+	color: var(--pink);
+}
+
+.gallery-submit-hint {
+	font-size: 13px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	color: #888;
 }
 
 .gallery-submit-options {

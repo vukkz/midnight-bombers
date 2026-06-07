@@ -1,32 +1,7 @@
 import { Router } from "express";
-import { mkdirSync } from "fs";
-import { dirname, join } from "path";
-import { fileURLToPath } from "url";
-import multer from "multer";
+import { GalleryPhoto } from "../models/GalleryPhoto.js";
 import { getActiveBackend, getDefaultFrom, sendMail } from "../utils/mailer.js";
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const uploadsDir = join(__dirname, "../../uploads/gallery");
-mkdirSync(uploadsDir, { recursive: true });
-
-const upload = multer({
-	storage: multer.diskStorage({
-		destination: (_req, _file, cb) => cb(null, uploadsDir),
-		filename: (_req, file, cb) => {
-			const ext = file.originalname.match(/\.[a-zA-Z0-9]+$/)?.[0] || ".jpg";
-			const safe = file.originalname
-				.replace(/\.[a-zA-Z0-9]+$/, "")
-				.replace(/[^a-zA-Z0-9-_]/g, "-")
-				.slice(0, 40);
-			cb(null, `${Date.now()}-${safe}${ext.toLowerCase()}`);
-		},
-	}),
-	limits: { fileSize: 8 * 1024 * 1024 },
-	fileFilter: (_req, file, cb) => {
-		if (file.mimetype.startsWith("image/")) cb(null, true);
-		else cb(new Error("Only image files are allowed"));
-	},
-});
+import { galleryUpload } from "../utils/galleryUpload.js";
 
 const router = Router();
 
@@ -49,7 +24,18 @@ function resolvePublicUrl(req) {
 	return "http://localhost:5173";
 }
 
-router.post("/submit", upload.single("photo"), async (req, res) => {
+router.get("/photos", async (_req, res, next) => {
+	try {
+		const photos = await GalleryPhoto.find({ active: true })
+			.sort({ sortOrder: 1, createdAt: -1 })
+			.select("image artist sortOrder");
+		res.json({ photos });
+	} catch (err) {
+		next(err);
+	}
+});
+
+router.post("/submit", galleryUpload.single("photo"), async (req, res) => {
 	try {
 		const { name, instagramHandle, email, caption } = req.body;
 
@@ -82,6 +68,7 @@ router.post("/submit", upload.single("photo"), async (req, res) => {
 			${caption?.trim() ? `<p><strong>Caption / location:</strong><br>${caption.trim().replace(/\n/g, "<br>")}</p>` : ""}
 			<p><strong>Photo:</strong> <a href="${photoUrl}">${photoUrl}</a></p>
 			<p><img src="${photoUrl}" alt="Gallery submission" style="max-width:100%;border-radius:8px;margin-top:12px;" /></p>
+			<p style="color:#666;font-size:13px;">Add to the homepage gallery from Admin → Gallery using this image URL:<br><code>/uploads/gallery/${req.file.filename}</code></p>
 		`;
 
 		await sendMail({
