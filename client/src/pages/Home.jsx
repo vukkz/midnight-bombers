@@ -6,6 +6,7 @@ import ProductCard from "../components/ProductCard.jsx";
 import LoadingSpinner from "../components/LoadingSpinner.jsx";
 import StarRating from "../components/StarRating.jsx";
 import BrandCarousel from "../components/BrandCarousel.jsx";
+import GallerySubmit from "../components/GallerySubmit.jsx";
 import { useReveal } from "../hooks/useReveal.js";
 
 const GALLERY = [
@@ -123,6 +124,8 @@ export default function Home() {
 					<i className="fa-solid fa-camera" aria-hidden /> Submit your photo
 				</a>
 			</section>
+
+			<GallerySubmit />
 
 			<section id="community" className="community-strip">
 				<div className="community-inner reveal">

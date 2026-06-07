@@ -16,6 +16,7 @@ import adminRoutes from "./routes/admin.js";
 import contactRoutes from "./routes/contact.js";
 import newsletterRoutes from "./routes/newsletter.js";
 import checkoutRoutes, { webhookHandler } from "./routes/checkout.js";
+import galleryRoutes from "./routes/gallery.js";
 import { verifyMailer } from "./utils/mailer.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -109,6 +110,7 @@ app.use("/api/admin", adminRoutes);
 app.use("/api/contact", contactRoutes);
 app.use("/api/newsletter", newsletterRoutes);
 app.use("/api/checkout", checkoutRoutes);
+app.use("/api/gallery", galleryRoutes);
 
 if (serveClient) {
 	app.use(express.static(clientDist));
