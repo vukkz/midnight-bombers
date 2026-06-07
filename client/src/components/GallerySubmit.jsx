@@ -4,7 +4,7 @@ import { api } from "../api/client.js";
 const INSTAGRAM_URL =
 	import.meta.env.VITE_INSTAGRAM_URL || "https://www.instagram.com/midnightbombers/";
 
-export default function GallerySubmit({ sectionRef, onClose }) {
+export default function GallerySubmit({ sectionRef, onClose, isClosing = false }) {
 	const [form, setForm] = useState({
 		name: "",
 		instagramHandle: "",
@@ -60,9 +60,9 @@ export default function GallerySubmit({ sectionRef, onClose }) {
 		<section
 			id="submit-photo"
 			ref={sectionRef}
-			className="gallery-submit-section section-p1 section-concrete"
+			className={`gallery-submit-section section-p1 section-concrete${isClosing ? " gallery-submit-section--closing" : ""}`}
 		>
-			<div className="gallery-submit-section-head">
+			<div className="gallery-submit-section-head reveal">
 				<div className="section-head">
 					<h2>Get featured</h2>
 					<p>Share your wall with the Midnight Bombers community</p>

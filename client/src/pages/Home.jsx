@@ -24,14 +24,54 @@ const REVIEWS = [
 	},
 ];
 
+const SUBMIT_CLOSE_MS = 780;
+
 export default function Home() {
 	const [featured, setFeatured] = useState([]);
 	const [gallery, setGallery] = useState([]);
 	const [error, setError] = useState("");
 	const [loading, setLoading] = useState(true);
 	const [showSubmitForm, setShowSubmitForm] = useState(false);
+	const [isClosingSubmit, setIsClosingSubmit] = useState(false);
 	const submitSectionRef = useRef(null);
 	const submitToggleRef = useRef(null);
+	const submitCloseTimerRef = useRef(null);
+
+	const closeSubmitForm = useCallback(() => {
+		if (!showSubmitForm || isClosingSubmit) return;
+
+		const prefersReduced = window.matchMedia(
+			"(prefers-reduced-motion: reduce)",
+		).matches;
+
+		if (prefersReduced) {
+			setShowSubmitForm(false);
+			setIsClosingSubmit(false);
+			return;
+		}
+
+		const section = submitSectionRef.current;
+		setIsClosingSubmit(true);
+		section?.classList.add("gallery-submit-section--closing");
+		section?.querySelectorAll(".reveal.is-visible").forEach((el) => {
+			el.classList.remove("is-visible");
+		});
+
+		submitCloseTimerRef.current = window.setTimeout(() => {
+			setShowSubmitForm(false);
+			setIsClosingSubmit(false);
+			section?.classList.remove("gallery-submit-section--closing");
+			submitCloseTimerRef.current = null;
+		}, SUBMIT_CLOSE_MS);
+	}, [showSubmitForm, isClosingSubmit]);
+
+	useEffect(() => {
+		return () => {
+			if (submitCloseTimerRef.current) {
+				window.clearTimeout(submitCloseTimerRef.current);
+			}
+		};
+	}, []);
 
 	useEffect(() => {
 		async function load() {
@@ -53,16 +93,16 @@ export default function Home() {
 	}, []);
 
 	useEffect(() => {
-		if (!showSubmitForm) return;
+		if (!showSubmitForm || isClosingSubmit) return;
 
 		const onPointerDown = (e) => {
 			if (submitToggleRef.current?.contains(e.target)) return;
 			if (submitSectionRef.current?.contains(e.target)) return;
-			setShowSubmitForm(false);
+			closeSubmitForm();
 		};
 
 		const onKeyDown = (e) => {
-			if (e.key === "Escape") setShowSubmitForm(false);
+			if (e.key === "Escape") closeSubmitForm();
 		};
 
 		document.addEventListener("mousedown", onPointerDown);
@@ -71,16 +111,19 @@ export default function Home() {
 			document.removeEventListener("mousedown", onPointerDown);
 			document.removeEventListener("keydown", onKeyDown);
 		};
-	}, [showSubmitForm]);
+	}, [showSubmitForm, isClosingSubmit, closeSubmitForm]);
 
 	const toggleSubmitForm = () => {
-		setShowSubmitForm((open) => {
-			if (!open) {
-				requestAnimationFrame(() => {
-					submitSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-				});
-			}
-			return !open;
+		if (isClosingSubmit) return;
+
+		if (showSubmitForm) {
+			closeSubmitForm();
+			return;
+		}
+
+		setShowSubmitForm(true);
+		requestAnimationFrame(() => {
+			submitSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
 		});
 	};
 
@@ -162,10 +205,11 @@ export default function Home() {
 				</button>
 			</section>
 
-			{showSubmitForm && (
+			{(showSubmitForm || isClosingSubmit) && (
 				<GallerySubmit
 					sectionRef={submitSectionRef}
-					onClose={() => setShowSubmitForm(false)}
+					onClose={closeSubmitForm}
+					isClosing={isClosingSubmit}
 				/>
 			)}
 

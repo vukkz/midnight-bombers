@@ -1215,6 +1215,22 @@ button.normal:hover {
 	font-weight: 700;
 }
 
+.gallery-submit-section--closing {
+	pointer-events: none;
+}
+
+.gallery-submit-section--closing .reveal-d1 {
+	transition-delay: 0.16s;
+}
+
+.gallery-submit-section--closing .reveal-d2 {
+	transition-delay: 0.08s;
+}
+
+.gallery-submit-section--closing .reveal-d3 {
+	transition-delay: 0s;
+}
+
 .gallery-submit-section-head {
 	display: flex;
 	align-items: flex-start;

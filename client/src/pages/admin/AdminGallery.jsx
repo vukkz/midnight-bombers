@@ -92,44 +92,81 @@ export default function AdminGallery() {
 			{error && <p className="form-error">{error}</p>}
 
 			<div className="admin-panel admin-gallery-add">
-				<h2>Add photo</h2>
+				<div className="admin-gallery-add-head">
+					<div>
+						<h2>Add photo</h2>
+						<p className="admin-hint">
+							Publish a new shot to the homepage Street Gallery. Use a submission
+							URL from email or upload directly.
+						</p>
+					</div>
+				</div>
+
 				<form className="admin-gallery-form" onSubmit={handleAdd}>
-					<label>
-						Artist / handle
-						<input
-							value={form.artist}
-							onChange={(e) => setForm({ ...form, artist: e.target.value })}
-							placeholder="@writer"
-							required
-						/>
-					</label>
-					<label>
-						Sort order
-						<input
-							type="number"
-							value={form.sortOrder}
-							onChange={(e) => setForm({ ...form, sortOrder: e.target.value })}
-						/>
-					</label>
-					<label>
-						Image URL <span className="label-optional">(optional if uploading)</span>
-						<input
-							value={form.imageUrl}
-							onChange={(e) => setForm({ ...form, imageUrl: e.target.value })}
-							placeholder="/uploads/gallery/... or /img/banners/..."
-						/>
-					</label>
-					<label>
-						Upload image
-						<input
-							type="file"
-							accept="image/*"
-							onChange={(e) => setNewImage(e.target.files?.[0] || null)}
-						/>
-					</label>
-					<button type="submit" className="admin-btn primary" disabled={saving === "new"}>
-						{saving === "new" ? "Adding..." : "Add to gallery"}
-					</button>
+					<div className="admin-gallery-form-row">
+						<label className="admin-field">
+							<span className="admin-field-label">Artist / handle</span>
+							<input
+								value={form.artist}
+								onChange={(e) => setForm({ ...form, artist: e.target.value })}
+								placeholder="@writer"
+								required
+							/>
+						</label>
+						<label className="admin-field admin-field--narrow">
+							<span className="admin-field-label">Sort order</span>
+							<input
+								type="number"
+								min={0}
+								value={form.sortOrder}
+								onChange={(e) => setForm({ ...form, sortOrder: e.target.value })}
+							/>
+						</label>
+					</div>
+
+					<div className="admin-gallery-form-section">
+						<span className="admin-gallery-form-section-title">Image source</span>
+						<p className="admin-gallery-form-section-desc">
+							Provide a URL or upload a file — at least one is required.
+						</p>
+
+						<label className="admin-field admin-field--full">
+							<span className="admin-field-label">
+								Image URL{" "}
+								<span className="label-optional">optional if uploading</span>
+							</span>
+							<input
+								value={form.imageUrl}
+								onChange={(e) => setForm({ ...form, imageUrl: e.target.value })}
+								placeholder="/uploads/gallery/... or /img/banners/..."
+							/>
+						</label>
+
+						<label className="admin-field admin-field--full admin-file-field">
+							<span className="admin-field-label">Upload image</span>
+							<span className="admin-file-control">
+								<span className="admin-file-btn">Choose file</span>
+								<span className="admin-file-name">
+									{newImage ? newImage.name : "No file chosen"}
+								</span>
+								<input
+									type="file"
+									accept="image/*"
+									onChange={(e) => setNewImage(e.target.files?.[0] || null)}
+								/>
+							</span>
+						</label>
+					</div>
+
+					<div className="admin-gallery-form-actions">
+						<button
+							type="submit"
+							className="admin-btn primary"
+							disabled={saving === "new"}
+						>
+							{saving === "new" ? "Adding..." : "Add to gallery"}
+						</button>
+					</div>
 				</form>
 			</div>
 
