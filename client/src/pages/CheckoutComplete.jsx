@@ -88,7 +88,7 @@ export default function CheckoutComplete() {
 				</p>
 			</section>
 
-			<section className="cart-page">
+			<section className="cart-page cart-empty">
 				<div className="cart-empty-card">
 					{state.loading && <p>Verifying your payment with Stripe...</p>}
 

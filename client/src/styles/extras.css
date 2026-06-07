@@ -117,6 +117,284 @@ section {
 	min-height: 50vh;
 }
 
+/* —— Account page —— */
+.account-page {
+	padding: 40px 80px 80px;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.account-page--loading {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: calc(100vh - 280px);
+	padding: 80px 24px;
+}
+
+.account-layout {
+	display: grid;
+	grid-template-columns: 280px 1fr;
+	gap: 32px;
+	align-items: start;
+}
+
+.account-profile-card {
+	background: #fff;
+	border: 1px solid #ebebeb;
+	border-radius: 16px;
+	padding: 32px 28px;
+	text-align: center;
+	box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
+	position: sticky;
+	top: 24px;
+}
+
+.account-avatar {
+	width: 72px;
+	height: 72px;
+	margin: 0 auto 20px;
+	border-radius: 50%;
+	background: linear-gradient(135deg, #222 0%, #444 100%);
+	color: #fff;
+	font-size: 28px;
+	font-weight: 700;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: "Bebas Neue", sans-serif;
+	letter-spacing: 0.05em;
+}
+
+.account-profile-card h2 {
+	font-size: 26px;
+	margin-bottom: 8px;
+	color: #222;
+}
+
+.account-email {
+	font-size: 14px;
+	color: #666;
+	word-break: break-all;
+	margin-bottom: 24px;
+}
+
+.account-profile-actions {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.account-shop-btn {
+	width: 100%;
+	text-align: center;
+}
+
+.account-admin-link {
+	font-size: 13px;
+	font-weight: 600;
+	color: #ff5fcf;
+	text-decoration: none;
+}
+
+.account-admin-link:hover {
+	color: #222;
+}
+
+.account-orders-panel {
+	background: #fff;
+	border: 1px solid #ebebeb;
+	border-radius: 16px;
+	padding: 28px 32px;
+	box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
+}
+
+.account-orders-header {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 16px;
+	margin-bottom: 24px;
+	padding-bottom: 16px;
+	border-bottom: 1px solid #eee;
+}
+
+.account-orders-header h3 {
+	font-size: 22px;
+	color: #222;
+}
+
+.account-orders-count {
+	font-size: 13px;
+	color: #888;
+	font-weight: 600;
+}
+
+.account-orders-loading {
+	padding: 40px 0;
+}
+
+.account-empty-orders {
+	text-align: center;
+	padding: 48px 24px;
+	background: #fafafa;
+	border-radius: 12px;
+	border: 1px dashed #ddd;
+}
+
+.account-empty-orders i {
+	font-size: 40px;
+	color: #ccc;
+	margin-bottom: 16px;
+}
+
+.account-empty-orders h4 {
+	font-size: 20px;
+	margin-bottom: 8px;
+}
+
+.account-empty-orders p {
+	color: #666;
+	margin-bottom: 20px;
+	font-size: 14px;
+}
+
+.account-order-list {
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+.account-order-card {
+	border: 1px solid #eee;
+	border-radius: 12px;
+	padding: 20px 22px;
+	background: #fafafa;
+	transition:
+		border-color 0.2s,
+		box-shadow 0.2s;
+}
+
+.account-order-card:hover {
+	border-color: #ddd;
+	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+}
+
+.account-order-top {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 12px;
+	margin-bottom: 14px;
+}
+
+.account-order-ref {
+	display: block;
+	font-size: 15px;
+	font-weight: 700;
+	color: #222;
+	letter-spacing: 0.04em;
+}
+
+.account-order-date {
+	font-size: 13px;
+	color: #888;
+}
+
+.account-order-status {
+	font-size: 11px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	padding: 5px 10px;
+	border-radius: 999px;
+	white-space: nowrap;
+}
+
+.account-order-status--pending {
+	background: #fff3cd;
+	color: #856404;
+}
+
+.account-order-status--paid {
+	background: #d4edda;
+	color: #155724;
+}
+
+.account-order-status--shipped {
+	background: #cce5ff;
+	color: #004085;
+}
+
+.account-order-status--delivered {
+	background: #d1ecf1;
+	color: #0c5460;
+}
+
+.account-order-status--cancelled {
+	background: #f8d7da;
+	color: #721c24;
+}
+
+.account-order-items {
+	list-style: none;
+	margin-bottom: 12px;
+}
+
+.account-order-items li {
+	display: flex;
+	justify-content: space-between;
+	gap: 12px;
+	padding: 6px 0;
+	font-size: 14px;
+	color: #444;
+	border-bottom: 1px solid #eee;
+}
+
+.account-order-items li:last-child {
+	border-bottom: none;
+}
+
+.account-order-item-name {
+	flex: 1;
+}
+
+.account-order-item-qty {
+	color: #888;
+	font-weight: 600;
+}
+
+.account-order-shipping {
+	font-size: 13px;
+	color: #666;
+	margin-bottom: 14px;
+}
+
+.account-order-shipping i {
+	margin-right: 6px;
+	color: #ff5fcf;
+}
+
+.account-order-footer {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding-top: 14px;
+	border-top: 1px solid #eee;
+}
+
+.account-order-total {
+	font-size: 18px;
+	font-weight: 700;
+	color: #222;
+}
+
+.account-order-item-count {
+	font-size: 12px;
+	color: #888;
+}
+
 .form-error {
 	color: #c0392b;
 	font-size: 14px;
@@ -516,6 +794,18 @@ section {
 	.cart-item-subtotal {
 		margin-left: 0;
 		width: 100%;
+	}
+
+	.account-page {
+		padding: 30px 24px 60px;
+	}
+
+	.account-layout {
+		grid-template-columns: 1fr;
+	}
+
+	.account-profile-card {
+		position: static;
 	}
 }
 
