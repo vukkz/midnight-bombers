@@ -39,6 +39,7 @@ const orderSchema = new mongoose.Schema(
 		stripeSessionId: { type: String, index: true },
 		stripePaymentIntentId: { type: String },
 		paidAt: { type: Date },
+		trackingNumber: { type: String, trim: true },
 	},
 	{ timestamps: true },
 );

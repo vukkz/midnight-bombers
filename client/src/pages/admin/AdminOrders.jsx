@@ -16,6 +16,7 @@ export default function AdminOrders() {
 	const [filter, setFilter] = useState("all");
 	const [expanded, setExpanded] = useState(null);
 	const [updating, setUpdating] = useState(null);
+	const [trackingDrafts, setTrackingDrafts] = useState({});
 
 	const load = useCallback(async () => {
 		setLoading(true);
@@ -37,10 +38,29 @@ export default function AdminOrders() {
 	const filtered =
 		filter === "all" ? orders : orders.filter((o) => o.status === filter);
 
+	const getTracking = (order) =>
+		(trackingDrafts[order._id] ?? order.trackingNumber ?? "").trim();
+
 	const updateStatus = async (orderId, status) => {
+		const order = orders.find((o) => o._id === orderId);
+		if (!order) return;
+
+		const trackingNumber = getTracking(order);
+
+		if (status === "shipped" && !trackingNumber) {
+			setExpanded(orderId);
+			alert(
+				"Enter a tracking number in the order details below before marking as shipped.",
+			);
+			return;
+		}
+
 		setUpdating(orderId);
 		try {
-			await api.patch(`/api/orders/${orderId}/status`, { status });
+			await api.patch(`/api/orders/${orderId}/status`, {
+				status,
+				trackingNumber: trackingNumber || undefined,
+			});
 			load();
 		} catch (err) {
 			alert(err.message);
@@ -114,7 +134,9 @@ export default function AdminOrders() {
 													))}
 												</select>
 											</td>
-											<td data-label="Date">{new Date(order.createdAt).toLocaleString()}</td>
+											<td data-label="Date">
+												{new Date(order.createdAt).toLocaleString()}
+											</td>
 											<td data-label="Details">
 												<button
 													type="button"
@@ -133,24 +155,76 @@ export default function AdminOrders() {
 											<tr>
 												<td colSpan={6}>
 													<div className="admin-order-detail">
-														<h4>Items</h4>
-														<ul>
-															{order.items.map((item, i) => (
-																<li key={i}>
-																	{item.quantity}× {item.name} —{" "}
-																	{formatRsd(item.price * item.quantity)}
-																</li>
-															))}
-														</ul>
-														<h4>Shipping</h4>
-														<p>{order.shippingAddress.fullName}</p>
-														<p>{order.shippingAddress.phone}</p>
-														<p>
-															{order.shippingAddress.street},{" "}
-															{order.shippingAddress.city}{" "}
-															{order.shippingAddress.postalCode}
-														</p>
-														<p>{order.shippingAddress.country}</p>
+														<div className="admin-order-detail-grid">
+															<div className="admin-order-detail-block">
+																<h4>Items</h4>
+																<ul>
+																	{order.items.map((item, i) => (
+																		<li key={i}>
+																			<span>{item.quantity}× {item.name}</span>
+																			<span>{formatRsd(item.price * item.quantity)}</span>
+																		</li>
+																	))}
+																</ul>
+															</div>
+
+															<div className="admin-order-detail-block">
+																<h4>Shipping</h4>
+																<dl className="admin-order-shipping">
+																	<div>
+																		<dt>Name</dt>
+																		<dd>{order.shippingAddress.fullName}</dd>
+																	</div>
+																	<div>
+																		<dt>Phone number</dt>
+																		<dd>{order.shippingAddress.phone}</dd>
+																	</div>
+																	<div>
+																		<dt>Shipping address</dt>
+																		<dd>{order.shippingAddress.street}</dd>
+																	</div>
+																	<div>
+																		<dt>City</dt>
+																		<dd>{order.shippingAddress.city}</dd>
+																	</div>
+																	<div>
+																		<dt>Postcode</dt>
+																		<dd>{order.shippingAddress.postalCode}</dd>
+																	</div>
+																	<div>
+																		<dt>Country</dt>
+																		<dd>{order.shippingAddress.country}</dd>
+																	</div>
+																</dl>
+															</div>
+
+															<div className="admin-order-detail-block">
+																<h4>Tracking</h4>
+																<label className="admin-order-tracking">
+																	<span>Tracking number</span>
+																	<input
+																		type="text"
+																		placeholder="e.g. RS123456789"
+																		value={
+																			trackingDrafts[order._id] ??
+																			order.trackingNumber ??
+																			""
+																		}
+																		onChange={(e) =>
+																			setTrackingDrafts((prev) => ({
+																				...prev,
+																				[order._id]: e.target.value,
+																			}))
+																		}
+																	/>
+																</label>
+																<p className="admin-order-tracking-hint">
+																	Required when status is set to{" "}
+																	<strong>shipped</strong>. Customer receives
+																	it by email.
+																</p>
+															</div>
+														</div>
 													</div>
 												</td>
 											</tr>

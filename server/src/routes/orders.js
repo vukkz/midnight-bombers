@@ -3,6 +3,7 @@ import { Order } from "../models/Order.js";
 import { Product } from "../models/Product.js";
 import { protect, requireAdmin } from "../middleware/auth.js";
 import { deductLineStock, validateLineStock } from "../utils/stock.js";
+import { sendOrderStatusEmail } from "../utils/orderEmails.js";
 
 const router = Router();
 
@@ -96,19 +97,37 @@ const ORDER_STATUSES = ["pending", "paid", "shipped", "delivered", "cancelled"];
 
 router.patch("/:id/status", protect, requireAdmin, async (req, res, next) => {
 	try {
-		const { status } = req.body;
+		const { status, trackingNumber } = req.body;
 		if (!ORDER_STATUSES.includes(status)) {
 			return res.status(400).json({ message: "Invalid order status" });
 		}
 
-		const order = await Order.findByIdAndUpdate(
-			req.params.id,
-			{ status },
-			{ new: true, runValidators: true },
-		).populate("user", "name email");
-
+		const order = await Order.findById(req.params.id).populate("user", "name email");
 		if (!order) {
 			return res.status(404).json({ message: "Order not found" });
+		}
+
+		const previousStatus = order.status;
+		const nextTracking =
+			typeof trackingNumber === "string" && trackingNumber.trim()
+				? trackingNumber.trim()
+				: order.trackingNumber;
+
+		if (status === "shipped" && !nextTracking) {
+			return res.status(400).json({
+				message: "Tracking number is required when marking an order as shipped",
+			});
+		}
+
+		if (nextTracking) {
+			order.trackingNumber = nextTracking;
+		}
+
+		order.status = status;
+		await order.save();
+
+		if (previousStatus !== status && order.user?.email) {
+			await sendOrderStatusEmail(order, order.user.email);
 		}
 
 		res.json({ order });
